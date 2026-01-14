@@ -248,7 +248,7 @@ def render_dashboard(analytics: dict):
             }
         ))
         fig.update_layout(height=300)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     
     with col2:
         st.subheader("🔬 Biometric Stress Index (BSI)")
@@ -277,7 +277,7 @@ def render_dashboard(analytics: dict):
             }
         ))
         fig.update_layout(height=300)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     
     st.markdown("---")
     
@@ -330,7 +330,7 @@ def render_dashboard(analytics: dict):
     fig.update_yaxes(title_text="Updates (Millions)", secondary_y=False)
     fig.update_yaxes(title_text="Enrolments (Millions)", secondary_y=True)
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 
 def render_state_analysis(analytics: dict):
@@ -361,7 +361,7 @@ def render_state_analysis(analytics: dict):
                 color_discrete_sequence=px.colors.qualitative.Set2
             )
             fig.update_layout(height=500)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
     
     with col2:
         # Cluster profiles
@@ -393,7 +393,7 @@ def render_state_analysis(analytics: dict):
             color_discrete_sequence=px.colors.qualitative.Set2
         )
         fig.update_layout(height=500, yaxis={'categoryorder': 'total ascending'})
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     
     with col2:
         st.subheader("State Identity Metrics Comparison")
@@ -409,7 +409,7 @@ def render_state_analysis(analytics: dict):
             color_discrete_sequence=px.colors.qualitative.Set2
         )
         fig.update_layout(height=500)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
 
 def render_pincode_analytics(analytics: dict):
@@ -455,14 +455,14 @@ def render_pincode_analytics(analytics: dict):
             title="Pincodes by Risk Level",
             color_discrete_sequence=['#44af69', '#f9c74f', '#f8961e', '#f94144']
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     
     with col2:
         st.subheader("High Priority Pincodes")
         high_priority = predictor.get_high_priority_pincodes(filtered_data, top_n=10)
         st.dataframe(
             high_priority[['pincode', 'state', 'district', 'risk_level', 'update_probability']],
-            use_container_width=True
+            width='stretch'
         )
     
     st.markdown("---")
@@ -480,7 +480,7 @@ def render_pincode_analytics(analytics: dict):
             title="Identity Velocity Index Distribution",
             color_discrete_sequence=['#667eea']
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     
     with col2:
         fig = px.histogram(
@@ -490,7 +490,7 @@ def render_pincode_analytics(analytics: dict):
             title="Biometric Stress Index Distribution",
             color_discrete_sequence=['#764ba2']
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     
     with col3:
         fig = px.histogram(
@@ -500,7 +500,7 @@ def render_pincode_analytics(analytics: dict):
             title="Update Probability Distribution",
             color_discrete_sequence=['#44af69']
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
 
 def render_anomaly_detection(analytics: dict):
@@ -531,7 +531,7 @@ def render_anomaly_detection(analytics: dict):
             if not top_anomalies.empty:
                 display_cols = ['pincode', 'state', 'district', 'anomaly_score']
                 display_cols = [c for c in display_cols if c in top_anomalies.columns]
-                st.dataframe(top_anomalies[display_cols], use_container_width=True)
+                st.dataframe(top_anomalies[display_cols], width='stretch')
     
     with col2:
         st.subheader("Temporal Anomalies")
@@ -560,7 +560,7 @@ def render_anomaly_detection(analytics: dict):
         color_continuous_scale='Reds'
     )
     fig.update_layout(height=500)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 
 def render_forecasting(analytics: dict):
@@ -634,7 +634,7 @@ def render_forecasting(analytics: dict):
         height=500
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     
     # Forecast summary
     if forecast:
@@ -791,7 +791,7 @@ def render_ai_assistant(analytics: dict):
     with col2:
         st.subheader("📋 Auto-Generated Report")
         
-        if st.button("🔄 Generate Full Report", use_container_width=True):
+        if st.button("🔄 Generate Full Report", width='stretch'):
             with st.spinner("Running AI analysis pipeline..."):
                 result = agents.run_analysis(context)
             
