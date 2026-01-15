@@ -136,4 +136,41 @@ logs/
 # Test files (optional)
 test_*.py
 !test_system.py
+!test_fuzzy_matching.py
 
+# Windows/System files
+nul
+*.lnk
+
+# Node.js / Frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Frontend build artifacts
+frontend/dist/
+frontend/build/
+frontend/.cache/
+frontend/.vite/
+frontend/.turbo/
+frontend/.next/
+frontend/out/
+
+# Backend Python cache (additional)
+backend/__pycache__/
+backend/*.pyc
+backend/.pytest_cache/
+
+# Cursor/Terminal outputs (if you don't want to track them)
+# Uncomment the line below if you want to ignore cursor terminal logs
+# .cursor/
+
+# Documentation folder (development notes)
+docs/
+tests/

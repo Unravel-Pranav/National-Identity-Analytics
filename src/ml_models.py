@@ -203,10 +203,17 @@ class DemandForecaster:
         future = model.make_future_dataframe(periods=self.forecast_days)
         forecast = model.predict(future)
         
+        # Convert dates to strings for JSON serialization
+        forecast_data = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(self.forecast_days).copy()
+        forecast_data['ds'] = forecast_data['ds'].dt.strftime('%Y-%m-%d')
+        
+        historical_data = df_prophet.copy()
+        historical_data['ds'] = historical_data['ds'].dt.strftime('%Y-%m-%d')
+        
         return {
             'method': 'prophet',
-            'forecast': forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(self.forecast_days).to_dict('records'),
-            'historical': df_prophet.to_dict('records')
+            'forecast': forecast_data.to_dict('records'),
+            'historical': historical_data.to_dict('records')
         }
     
     def _simple_forecast(self, daily_df: pd.DataFrame, 
@@ -240,10 +247,14 @@ class DemandForecaster:
                 'yhat_upper': current_value * 1.2
             })
         
+        # Convert dates to strings for JSON serialization
+        historical_data = df[['date', target_col]].copy()
+        historical_data['date'] = pd.to_datetime(historical_data['date']).dt.strftime('%Y-%m-%d')
+        
         return {
             'method': 'moving_average',
             'forecast': forecasts,
-            'historical': df[['date', target_col]].to_dict('records')
+            'historical': historical_data.rename(columns={'date': 'ds', target_col: 'y'}).to_dict('records')
         }
     
     def forecast_all_metrics(self, daily_df: pd.DataFrame) -> Dict[str, Any]:
