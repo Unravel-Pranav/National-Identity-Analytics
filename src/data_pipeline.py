@@ -6,37 +6,179 @@ import pandas as pd
 import numpy as np
 import glob
 from pathlib import Path
-from typing import Tuple, Dict, Any
+from typing import Tuple, Dict, Any, Optional
 from functools import lru_cache
+import re
+
+# Try to import fuzzy matching library
+try:
+    from rapidfuzz import process, fuzz
+    FUZZY_MATCHING_AVAILABLE = True
+except ImportError:
+    FUZZY_MATCHING_AVAILABLE = False
+    import warnings
+    warnings.warn(
+        "rapidfuzz not installed. Using fallback state matching. "
+        "For better performance, install with: pip install rapidfuzz",
+        ImportWarning
+    )
 
 
-# State name standardization mapping
-STATE_MAPPING: Dict[str, str] = {
-    # West Bengal variations
-    'WEST BENGAL': 'West Bengal', 'WESTBENGAL': 'West Bengal', 
-    'West  Bengal': 'West Bengal', 'West Bangal': 'West Bengal', 
-    'West Bengli': 'West Bengal', 'Westbengal': 'West Bengal',
-    'west Bengal': 'West Bengal',
-    # Odisha variations
-    'ODISHA': 'Odisha', 'Orissa': 'Odisha', 'odisha': 'Odisha',
-    # Others
-    'andhra pradesh': 'Andhra Pradesh', 'Tamilnadu': 'Tamil Nadu',
-    'Jammu & Kashmir': 'Jammu and Kashmir', 'Jammu And Kashmir': 'Jammu and Kashmir',
-    'Chhatisgarh': 'Chhattisgarh', 'Uttaranchal': 'Uttarakhand', 
+# Master list of valid Indian states and UTs (canonical names)
+VALID_STATES = frozenset([
+    # 28 States
+    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+    'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand',
+    'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
+    'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab',
+    'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura',
+    'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
+    # 8 Union Territories
+    'Andaman and Nicobar Islands', 'Chandigarh', 
+    'Dadra and Nagar Haveli and Daman and Diu',
+    'Delhi', 'Jammu and Kashmir', 'Ladakh', 'Lakshadweep', 'Puducherry'
+])
+
+# Manual override dictionary for specific cases (takes precedence over fuzzy matching)
+# Use this for historical names, common typos, or ambiguous cases
+MANUAL_STATE_OVERRIDES: Dict[str, str] = {
+    # Historical names
+    'Orissa': 'Odisha',
+    'Uttaranchal': 'Uttarakhand',
     'Pondicherry': 'Puducherry',
-    'Andaman & Nicobar Islands': 'Andaman and Nicobar Islands',
+    # Old UT names (before 2020 merger)
     'Dadra & Nagar Haveli': 'Dadra and Nagar Haveli and Daman and Diu',
     'Dadra and Nagar Haveli': 'Dadra and Nagar Haveli and Daman and Diu',
     'Daman & Diu': 'Dadra and Nagar Haveli and Daman and Diu',
     'Daman and Diu': 'Dadra and Nagar Haveli and Daman and Diu',
+    # Common variations that might not fuzzy match well
+    'Tamilnadu': 'Tamil Nadu',
     'The Dadra And Nagar Haveli And Daman And Diu': 'Dadra and Nagar Haveli and Daman and Diu',
 }
 
-# Invalid state entries (data entry errors)
+# Invalid entries that should be filtered out (cities, pincodes, neighborhoods)
 INVALID_STATES = frozenset([
     '100000', 'BALANAGAR', 'Darbhanga', 'Jaipur', 'Madanapalle', 
     'Nagpur', 'Puttenahalli', 'Raja Annamalai Puram'
 ])
+
+
+def normalize_state_name(state_name: str) -> str:
+    """
+    Normalize state name by removing extra spaces, special chars, and standardizing case.
+    
+    Args:
+        state_name: Raw state name from data
+        
+    Returns:
+        Normalized state name with proper title case
+    """
+    if pd.isna(state_name):
+        return ''
+    
+    # Convert to string and strip
+    name = str(state_name).strip()
+    
+    # Remove extra spaces
+    name = re.sub(r'\s+', ' ', name)
+    
+    # Standardize special characters (& → and)
+    name = name.replace('&', 'and')
+    
+    # Convert to title case for consistency
+    # (except for 'and' which should remain lowercase)
+    name = name.title()
+    
+    # Fix 'And' back to 'and' in state names
+    name = name.replace(' And ', ' and ')
+    
+    return name
+
+
+def fuzzy_match_state(state_name: str, threshold: int = 80) -> Optional[str]:
+    """
+    Dynamically match state name using fuzzy string matching.
+    
+    Args:
+        state_name: Raw state name from data
+        threshold: Minimum similarity score (0-100). Default 80.
+        
+    Returns:
+        Matched canonical state name or None if no good match
+        
+    Examples:
+        >>> fuzzy_match_state("WEST BENGAL")
+        'West Bengal'
+        >>> fuzzy_match_state("Westbengal")
+        'West Bengal'
+        >>> fuzzy_match_state("West Bangal")  # typo
+        'West Bengal'
+        >>> fuzzy_match_state("InvalidCity")
+        None
+    """
+    if not state_name or not isinstance(state_name, str):
+        return None
+    
+    # Check manual overrides first (highest priority)
+    if state_name in MANUAL_STATE_OVERRIDES:
+        return MANUAL_STATE_OVERRIDES[state_name]
+    
+    # Normalize the input
+    normalized = normalize_state_name(state_name)
+    
+    # Check if already valid (exact match after normalization)
+    if normalized in VALID_STATES:
+        return normalized
+    
+    # Use fuzzy matching if available
+    if FUZZY_MATCHING_AVAILABLE:
+        # Find best match using multiple algorithms for robustness
+        match = process.extractOne(
+            normalized,
+            VALID_STATES,
+            scorer=fuzz.WRatio,  # Weighted ratio (handles case, spaces well)
+            score_cutoff=threshold
+        )
+        
+        if match:
+            matched_state, score, _ = match
+            return matched_state
+    else:
+        # Fallback: case-insensitive exact match
+        normalized_lower = normalized.lower()
+        for valid_state in VALID_STATES:
+            if valid_state.lower() == normalized_lower:
+                return valid_state
+    
+    return None
+
+
+def is_valid_state(state_name: str) -> bool:
+    """
+    Check if a state name is valid (not a city, pincode, or invalid entry).
+    
+    Args:
+        state_name: State name to validate
+        
+    Returns:
+        True if valid, False otherwise
+    """
+    if not state_name or not isinstance(state_name, str):
+        return False
+    
+    # Check if in invalid list
+    if state_name in INVALID_STATES:
+        return False
+    
+    # Check if pure numeric (likely a pincode)
+    if state_name.isdigit():
+        return False
+    
+    # Check if '0' or 'nan' string
+    if state_name in ('0', 'nan', 'NaN', 'None'):
+        return False
+    
+    return True
 
 
 class AadhaarDataPipeline:
@@ -76,12 +218,61 @@ class AadhaarDataPipeline:
         return pd.concat([pd.read_csv(f) for f in csv_files], ignore_index=True)
     
     def _clean_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Clean and standardize dataframe."""
+        """
+        Clean and standardize dataframe with dynamic fuzzy state matching.
+        
+        This method:
+        1. Normalizes and fuzzy-matches state names against valid list
+        2. Filters out invalid entries (cities, pincodes, etc.)
+        3. Parses dates and adds temporal features
+        4. Logs any unmatched states for review
+        """
         df = df.copy()
         
-        # Standardize state names
-        df['state'] = df['state'].replace(STATE_MAPPING)
-        df = df[~df['state'].isin(INVALID_STATES)]
+        # Dynamically standardize state names using fuzzy matching
+        original_states = df['state'].unique()
+        matched_count = 0
+        unmatched_states = []
+        
+        # Create mapping on-the-fly
+        state_mapping = {}
+        for state in original_states:
+            if not is_valid_state(state):
+                state_mapping[state] = None  # Will be filtered out
+                continue
+            
+            matched = fuzzy_match_state(state)
+            if matched:
+                state_mapping[state] = matched
+                matched_count += 1
+            else:
+                state_mapping[state] = None
+                unmatched_states.append(state)
+        
+        # Log unmatched states (for data quality monitoring)
+        if unmatched_states:
+            import warnings
+            warnings.warn(
+                f"{len(unmatched_states)} state names could not be matched. "
+                f"Examples: {', '.join(unmatched_states[:3])}",
+                UserWarning
+            )
+        
+        # Apply mapping
+        df['state'] = df['state'].map(state_mapping)
+        
+        # Filter out rows with no valid state match
+        initial_rows = len(df)
+        df = df[df['state'].notna()]
+        filtered_rows = initial_rows - len(df)
+        
+        if filtered_rows > 0:
+            import warnings
+            warnings.warn(
+                f"Filtered out {filtered_rows:,} rows with invalid/unmatched states "
+                f"({filtered_rows/initial_rows*100:.2f}%)",
+                UserWarning
+            )
         
         # Convert date
         df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
@@ -146,11 +337,8 @@ class AadhaarDataPipeline:
             on='pincode', how='outer'
         ).fillna(0)
         
-        # Ensure state is string and filter invalid entries
-        merged['state'] = merged['state'].astype(str)
-        merged = merged[~merged['state'].str.isdigit()]
-        merged = merged[merged['state'] != '0']
-        merged = merged[merged['state'] != 'nan']
+        # State validation is now handled in _clean_dataframe()
+        # No need for additional filtering here
         
         # Calculate Novel Indices
         merged['total_updates'] = merged['total_bio_updates'] + merged['total_demo_updates']
