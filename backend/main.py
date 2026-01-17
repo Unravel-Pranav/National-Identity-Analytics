@@ -4,7 +4,7 @@ Optimized for high-performance data delivery with caching
 """
 from fastapi import FastAPI, HTTPException, Query, Path as PathParam
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
 import sys
@@ -12,6 +12,20 @@ from pathlib import Path
 import asyncio
 from functools import lru_cache
 import time
+import os
+import json
+import uuid
+from collections import defaultdict
+
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    env_path = Path(__file__).parent.parent / ".env"
+    load_dotenv(dotenv_path=env_path)
+    print(f"[INFO] Loaded .env from: {env_path}")
+    print(f"[INFO] NVIDIA_API_KEY present: {bool(os.getenv('NVIDIA_API_KEY'))}")
+except ImportError:
+    print("[WARNING] python-dotenv not installed, environment variables must be set manually")
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
@@ -37,6 +51,10 @@ app.add_middleware(
 
 # Global cache for pipeline (singleton)
 _pipeline_cache = None
+
+# Production-grade conversation storage using SQLite
+from conversation_db import get_conversation_db
+MAX_HISTORY = 20  # Keep last 20 messages per session
 _analytics_cache = {}
 _cache_timestamp = {}
 
@@ -495,6 +513,234 @@ async def search_pincode(pincode: int):
 # ============================================================================
 # CACHE MANAGEMENT
 # ============================================================================
+
+# ============================================================================
+# AI CHAT ENDPOINT
+# ============================================================================
+
+class ChatRequest(BaseModel):
+    message: str
+    session_id: Optional[str] = None
+    stream: bool = True
+
+class ChatMessage(BaseModel):
+    role: str  # 'user', 'assistant', 'system'
+    content: str
+    timestamp: Optional[str] = None
+    conversation_history: List[Dict[str, Any]] = []
+
+# Removed manual casual detection - let the LLM decide how to respond
+
+
+async def stream_agent_response(agent_system, message: str, context: Dict[str, Any], history: List[Dict[str, str]]):
+    """Stream agent response with Chain-of-Thought."""
+    try:
+        # Add conversation history to context
+        context['conversation_history'] = history[-10:]  # Last 10 messages
+        print(f"[DEBUG BACKEND] Passing {len(context['conversation_history'])} messages to agent")
+        for i, msg in enumerate(context['conversation_history']):
+            print(f"[DEBUG BACKEND] History[{i}]: {msg['role']} - {msg['content'][:50]}...")
+        
+        # Send thinking indicator
+        yield f"data: {json.dumps({'type': 'thinking', 'content': 'Analyzing your question...'})}\n\n"
+        await asyncio.sleep(0.1)
+        
+        # Get response with trace
+        response, trace = agent_system.chat_with_agent(message, context, return_trace=True)
+        
+        # Stream trace steps (Chain-of-Thought)
+        for step in trace:
+            step_type = step.get('step', 'unknown')
+            
+            if step_type == 'TOOL_CALL':
+                tool_name = step.get('tool', 'unknown')
+                args = step.get('args', {})
+                yield f"data: {json.dumps({'type': 'tool_call', 'tool': tool_name, 'args': args})}\n\n"
+                await asyncio.sleep(0.1)
+            
+            elif step_type == 'TOOL_RESPONSE':
+                tool_name = step.get('tool', 'unknown')
+                result = step.get('result', '')
+                yield f"data: {json.dumps({'type': 'tool_result', 'tool': tool_name, 'result': result})}\n\n"
+                await asyncio.sleep(0.1)
+            
+            elif step_type == 'AI_RESPONSE':
+                thinking = step.get('content', '')
+                yield f"data: {json.dumps({'type': 'thinking', 'content': thinking})}\n\n"
+                await asyncio.sleep(0.1)
+        
+        # Stream final response in chunks
+        words = response.split()
+        chunk_size = 5
+        for i in range(0, len(words), chunk_size):
+            chunk = ' '.join(words[i:i+chunk_size])
+            yield f"data: {json.dumps({'type': 'response', 'content': chunk + ' '})}\n\n"
+            await asyncio.sleep(0.05)
+        
+        # Send completion
+        yield f"data: {json.dumps({'type': 'done', 'full_response': response})}\n\n"
+        
+    except Exception as e:
+        yield f"data: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"
+
+
+@app.post("/api/ai/chat")
+async def ai_chat(request: ChatRequest):
+    """
+    AI-powered chat assistant for Aadhaar data analysis.
+    Uses NVIDIA NIM API with LangGraph agents, conversation memory, and streaming.
+    Supports Chain-of-Thought display for complex queries.
+    """
+    try:
+        # Import agents module
+        from agents import AadhaarAgentSystem, NVIDIA_AVAILABLE, LANGGRAPH_AVAILABLE
+        
+        # Check if AI is available
+        if not NVIDIA_AVAILABLE:
+            return {
+                "response": "❌ AI service is not available. NVIDIA AI Endpoints package is not installed.\n\nTo enable AI features, install: pip install langchain-nvidia-ai-endpoints",
+                "status": "unavailable"
+            }
+        
+        if not LANGGRAPH_AVAILABLE:
+            return {
+                "response": "❌ AI service is not available. LangGraph package is not installed.\n\nTo enable AI features, install: pip install langgraph langchain-core",
+                "status": "unavailable"
+            }
+        
+        # Check for API key
+        api_key = os.getenv("NVIDIA_API_KEY")
+        if not api_key:
+            return {
+                "response": "❌ NVIDIA API key is not configured.\n\nTo enable AI features:\n1. Get a free API key from https://build.nvidia.com/\n2. Set it in your .env file: NVIDIA_API_KEY=your-key-here\n3. Restart the backend",
+                "status": "no_api_key"
+            }
+        
+        # Generate or use provided session ID
+        session_id = request.session_id or str(uuid.uuid4())
+        
+        # Get conversation database
+        db = get_conversation_db()
+        
+        # Get conversation history from database (last 20 messages)
+        history = db.get_recent_context(session_id, max_messages=MAX_HISTORY)
+        
+        # Initialize agent system with data context
+        pipeline = get_cached_pipeline()
+        analytics = get_analytics_cached()
+        
+        # Initialize agent with NVIDIA API key
+        agent_system = AadhaarAgentSystem(nvidia_api_key=api_key)
+        
+        # Prepare context for agents
+        context = {
+            'summary_stats': analytics['summary'],
+            'state_analytics': analytics['state_data'],
+            'pincode_data': analytics['pincode_data']
+        }
+        
+        agent_system.set_context(context, pipeline)
+        
+        # If streaming disabled, return immediately
+        if not request.stream:
+            # Save user message to database
+            db.add_message(session_id, 'user', request.message)
+            
+            # Get fresh context for agent (without current message)
+            context_history = db.get_recent_context(session_id, max_messages=MAX_HISTORY - 1)
+            context['conversation_history'] = context_history
+            
+            response = agent_system.chat(request.message)
+            
+            # Save assistant response to database
+            db.add_message(session_id, 'assistant', response)
+            
+            return {
+                "response": response,
+                "session_id": session_id,
+                "status": "success"
+            }
+        
+        # For streaming requests, let LLM decide complexity and stream with Chain-of-Thought
+        async def generate():
+            full_response = ""
+            
+            # Get conversation context BEFORE adding current message
+            context_history = db.get_recent_context(session_id, max_messages=MAX_HISTORY)
+            context['conversation_history'] = context_history
+            
+            # Stream the response
+            async for chunk in stream_agent_response(agent_system, request.message, context, context_history):
+                yield chunk
+                # Extract full response from done event
+                if '"type": "done"' in chunk:
+                    try:
+                        data = json.loads(chunk.replace('data: ', ''))
+                        full_response = data.get('full_response', '')
+                    except:
+                        pass
+            
+            # Save user message and assistant response to database
+            db.add_message(session_id, 'user', request.message)
+            if full_response:
+                db.add_message(session_id, 'assistant', full_response)
+        
+        return StreamingResponse(
+            generate(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Session-ID": session_id
+            }
+        )
+        
+    except Exception as e:
+        print(f"[ERROR] AI Chat Error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        
+        return {
+            "response": f"❌ An error occurred: {str(e)}\n\nPlease check the backend logs for details.",
+            "status": "error"
+        }
+
+
+@app.get("/api/ai/history/{session_id}")
+async def get_chat_history(session_id: str):
+    """Get conversation history for a session from database."""
+    db = get_conversation_db()
+    history = db.get_conversation_history(session_id)
+    return {
+        "session_id": session_id,
+        "history": history,
+        "message_count": len(history)
+    }
+
+
+@app.delete("/api/ai/history/{session_id}")
+async def clear_chat_history(session_id: str):
+    """Clear conversation history for a session from database."""
+    db = get_conversation_db()
+    db.clear_session(session_id)
+    return {"status": "success", "message": "History cleared"}
+
+
+@app.get("/api/ai/sessions")
+async def get_active_sessions():
+    """Get all active sessions."""
+    db = get_conversation_db()
+    sessions = db.get_all_sessions(active_only=True, days=7)
+    return {"sessions": sessions, "count": len(sessions)}
+
+
+@app.post("/api/ai/cleanup")
+async def cleanup_old_sessions(days: int = 30):
+    """Clean up sessions older than specified days."""
+    db = get_conversation_db()
+    deleted = db.cleanup_old_sessions(days)
+    return {"status": "success", "deleted_sessions": deleted}
+
 
 @app.post("/api/cache/clear")
 async def clear_cache():

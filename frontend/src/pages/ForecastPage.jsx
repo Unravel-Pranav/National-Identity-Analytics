@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState, useMemo } from 'react';
 import apiService from '../services/api';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, ReferenceLine, Area, AreaChart } from 'recharts';
-import { TrendingUp, Calendar, ArrowUp, ArrowDown, Activity, AlertCircle, BarChart3, Info } from 'lucide-react';
+import { TrendingUp, Calendar, ArrowUp, ArrowDown, Activity, AlertCircle, BarChart3, Info, Fingerprint, FileText, UserPlus } from 'lucide-react';
 
 export default function ForecastPage() {
   const [metric, setMetric] = useState('bio');
@@ -114,23 +114,25 @@ export default function ForecastPage() {
       <div className="gov-card">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
-              📊 What to Forecast
+            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+              <BarChart3 className="h-4 w-4 text-gov-blue-600" />
+              What to Forecast
             </label>
             <select
               value={metric}
               onChange={(e) => setMetric(e.target.value)}
               className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base font-medium focus:ring-2 focus:ring-gov-blue-500 focus:border-gov-blue-500 transition-all"
             >
-              <option value="bio">👆 Biometric Updates (Fingerprint/Iris)</option>
-              <option value="demo">📝 Demographic Updates (Address/Name)</option>
-              <option value="enrol">🆕 New Enrolments</option>
+              <option value="bio">Biometric Updates (Fingerprint/Iris)</option>
+              <option value="demo">Demographic Updates (Address/Name)</option>
+              <option value="enrol">New Enrolments</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
-              📅 How Far Ahead
+            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+              <Calendar className="h-4 w-4 text-gov-blue-600" />
+              How Far Ahead
             </label>
             <select
               value={days}
@@ -208,8 +210,9 @@ export default function ForecastPage() {
       <div className="gov-card">
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-1">
-              📈 Visual Forecast
+            <h3 className="flex items-center gap-2 text-xl font-bold text-gray-900 mb-1">
+              <TrendingUp className="h-5 w-5 text-gov-blue-600" />
+              Visual Forecast
             </h3>
             <p className="text-sm text-gray-600">
               Past performance vs. AI-predicted future demand

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import apiService from '../services/api';
-import { Shield, MapPin, AlertTriangle } from 'lucide-react';
+import { Shield, MapPin, AlertTriangle, Target } from 'lucide-react';
 
 export default function HighRiskPage() {
   const { data, isLoading } = useQuery({
@@ -140,8 +140,9 @@ export default function HighRiskPage() {
 
       {/* Action Recommendations */}
       <div className="gov-card bg-gradient-to-br from-blue-50 to-white border-blue-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">
-          🎯 Recommended Actions
+        <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-3">
+          <Target className="h-5 w-5 text-gov-blue-600" />
+          Recommended Actions
         </h3>
         <div className="space-y-3 text-sm text-gray-700">
           <div className="flex items-start">

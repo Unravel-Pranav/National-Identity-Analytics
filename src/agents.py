@@ -611,53 +611,109 @@ class AadhaarAnalysisAgents:
         if self.api_key and NVIDIA_AVAILABLE:
             os.environ["NVIDIA_API_KEY"] = self.api_key
             self.llm = ChatNVIDIA(
-                model="meta/llama-3.1-70b-instruct",
-                temperature=0.3
+                model="meta/llama-3.1-8b-instruct",
+                temperature=0.1,
+                max_tokens=512
             )
             
             # Create ReAct agent with tools
             if LANGGRAPH_AVAILABLE and self.llm:
-                self.agent = create_react_agent(
-                    model=self.llm,
-                    tools=ALL_TOOLS,
-                    prompt=self._get_system_prompt()
-                )
+                from langchain_core.messages import SystemMessage
+        # Create the agent without system prompt in initialization
+        # System prompt will be prepended to messages during invocation
+        self.agent = create_react_agent(
+            model=self.llm,
+            tools=ALL_TOOLS
+        )
+        self.system_prompt = self._get_system_prompt()
     
     def _get_system_prompt(self) -> str:
         """Get the system prompt for the agent."""
-        return """You are an AI assistant specialized in analyzing Aadhaar identity data for India.
+        return """You are an AI assistant for Aadhaar identity data analysis in India.
 
-You have access to tools that let you:
-- Get summary statistics of the entire system
-- Detect and analyze anomalies in the data  
-- Analyze specific states in detail
-- **Analyze specific districts** (use get_district_analysis for district-level queries like "Pune in Maharashtra")
-- **List districts in a state** (use list_districts_in_state to see available districts)
-- View clustering analysis of states
-- Get demand forecasts
-- Generate policy recommendations
-- Refresh data from disk
-- Compare states side-by-side
-- List all available states
+**IMPORTANT: ALWAYS USE TOOLS FOR DATA QUESTIONS**
 
-When answering questions:
-1. Use the appropriate tool(s) to gather data
-2. For district-level queries, use get_district_analysis with state_name and district_name
-3. Provide specific numbers and facts from the data
-4. Give actionable insights when relevant
-5. Be concise but thorough
+You MUST call tools for ANY question about:
+- States, metrics, statistics, trends, activity
+- "last 30 days", "highest", "summary", "which state", "show me"
+- Numbers, data, analysis, comparisons
 
-Important terminology:
-- IVI (Identity Velocity Index): Updates per capita - high values indicate data volatility
-- BSI (Biometric Stress Index): Ratio of biometric to demographic updates - high values indicate fingerprint issues
-- Youth Update Ratio: Proportion of updates from 5-17 age group
-- Youth Enrollment: New Aadhaar registrations for age 5-17
+Available tools:
+1. get_summary_statistics - Overall system metrics (ALWAYS START HERE)
+2. get_state_analysis - Specific state details
+3. get_temporal_trends - Daily/weekly/monthly trends
+4. detect_anomalies - Unusual patterns
+5. compare_states - Compare multiple states
 
-Always cite specific data when available."""
+Example: "Give me last 30 days activity" → Call get_temporal_trends(period='daily', days=30)
+
+For listing all states: Use list_all_states
+For comparing states: Use compare_states(state1, state2)
+For specific state details: Use get_state_analysis(state_name)
+For anomalies: Use get_anomaly_report()
+For recommendations: Use get_policy_recommendations()
+
+**Understanding "Risk" Indicators:**
+- "Highest risk/stress" = State shown in "Highest Biometric Stress State" field from get_summary_statistics
+- "Critical" = High IVI (>1000) OR High BSI (>2.0)
+- "Stable" = Low IVI (<500) AND Low BSI (<1.0)
+- **DON'T analyze multiple states manually - use get_summary_statistics!**
+
+**Response Strategy:**
+- Greetings (hi, hello, thanks): Respond warmly without tools
+- Help requests: Explain capabilities concisely
+- Data questions: ALWAYS use tools - never guess or provide generic answers
+- BE CONTEXTUAL: Check conversation history first - user might be asking about what YOU just said, not asking a new question
+
+**Available Tools (USE THEM!):**
+- list_all_states: See ALL states with IVI, BSI, updates - USE THIS FIRST for "which state" questions
+- get_summary_statistics: Overall system metrics
+- get_anomaly_report: Detect unusual patterns and high-risk pincodes
+- get_state_analysis: Analyze ONE specific state (need exact name)
+- get_district_analysis: District-level insights
+- list_districts_in_state: List districts in a state
+- get_cluster_insights: State clustering patterns
+- get_forecast_prediction: 30-day demand forecasts
+- get_policy_recommendations: Actionable advice with real data
+- compare_states: Side-by-side comparison of TWO states
+- check_data_freshness: Data status
+- refresh_data: Reload from disk
+
+**HOW TO ANSWER QUESTIONS:**
+
+1. "Highest risk/stress state?" → Use get_summary_statistics, read "high_stress_state" field
+2. "Which state has most updates?" → Use list_all_states, find the top one
+3. "Tell me about [State]" → Use get_state_analysis("State")
+4. "Compare X and Y" → Use compare_states("X", "Y")
+5. "Show anomalies" → Use get_anomaly_report()
+6. "Give recommendations" → Use get_policy_recommendations()
+7. "What were we talking about?" → CHECK CONVERSATION HISTORY FIRST! Don't use tools!
+
+**CONVERSATION MEMORY - CRITICAL:**
+- ALWAYS review the conversation history FIRST before answering
+- If user asks "what state?" or "which one?", look at the PREVIOUS messages to see what you just discussed
+- DO NOT assume they're asking about "highest risk" - they might be asking about what YOU just mentioned
+- Reference your OWN previous answers, not just the system knowledge
+- Be natural and conversational - answer based on CONTEXT
+
+**Key Metrics:**
+- IVI (Identity Velocity Index): Updates per capita - High (>1000) = CRITICAL RISK
+- BSI (Biometric Stress Index): Bio/demo ratio - High (>2.0) = FINGERPRINT ISSUES
+- Youth Update Ratio: % updates from age 5-17
+- Update Probability Score: Combined risk score
+
+**ALWAYS cite specific numbers from tools. Never say "I don't have that information" - USE THE TOOLS!**
+
+**Tone:** Professional, data-driven, actionable. You're helping government officials make critical decisions."""
     
     def set_context(self, context: Dict[str, Any], pipeline=None):
         """Set the data context for tools."""
         set_data_context(context, pipeline)
+    
+    def chat(self, query: str) -> str:
+        """Simple chat interface for API endpoint."""
+        context = _data_context.copy()
+        return self.chat_with_agent(query, context, return_trace=False)
     
     def chat_with_agent(self, query: str, context: Dict[str, Any], return_trace: bool = False) -> str | tuple:
         """Interactive chat with the AI agent using tools.
@@ -679,9 +735,33 @@ Always cite specific data when available."""
         # If we have a full ReAct agent, use it
         if self.agent:
             try:
+                # Build message history with system prompt
+                messages = [SystemMessage(content=self.system_prompt)]
+                
+                # Add conversation history from context if available
+                conversation_history = context.get('conversation_history', [])
+                print(f"\n[DEBUG AGENT] ========== BUILDING MESSAGES ==========")
+                print(f"[DEBUG AGENT] Found {len(conversation_history)} messages in history")
+                
+                for i, msg in enumerate(conversation_history):
+                    role = msg.get('role', '').lower()
+                    content = msg.get('content', '')
+                    print(f"[DEBUG AGENT] History[{i}]: role={role}, content={content[:60]}...")
+                    
+                    if role == 'user':
+                        messages.append(HumanMessage(content=content))
+                    elif role == 'assistant':
+                        messages.append(AIMessage(content=content))
+                
+                # Add current query
+                messages.append(HumanMessage(content=query))
+                print(f"[DEBUG AGENT] Current query: {query}")
+                print(f"[DEBUG AGENT] Total messages to LLM: {len(messages)} (1 system + {len(conversation_history)} history + 1 current)")
+                print(f"[DEBUG AGENT] ========================================\n")
+                
                 # Stream to capture intermediate steps
                 result = self.agent.invoke({
-                    "messages": [{"role": "user", "content": query}]
+                    "messages": messages
                 })
                 
                 # Extract trace from messages
@@ -884,3 +964,6 @@ Current data: {summary.get('unique_states', 0)} states, {summary.get('unique_pin
 def create_agents(api_key: str | None = None) -> AadhaarAnalysisAgents:
     """Create and return the agent system."""
     return AadhaarAnalysisAgents(api_key)
+
+# Alias for API compatibility
+AadhaarAgentSystem = AadhaarAnalysisAgents

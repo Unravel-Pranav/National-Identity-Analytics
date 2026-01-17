@@ -12,6 +12,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { useState } from 'react';
+import AIAssistant from './AIAssistant';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
@@ -285,6 +286,9 @@ export default function Layout({ children }) {
           onClick={() => setMobileSidebarOpen(false)}
         />
       )}
+
+      {/* AI Assistant */}
+      <AIAssistant />
     </div>
   );
 }
