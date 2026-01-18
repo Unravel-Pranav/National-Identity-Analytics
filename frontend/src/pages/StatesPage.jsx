@@ -13,17 +13,15 @@ export default function StatesPage() {
 
   const { data, isLoading } = useQuery({
     queryKey: ['states'],
-    queryFn: apiService.getAllStates,
+    queryFn: () => apiService.getAllStates(),
   });
-
-  if (isLoading) {
-    return <LoadingSkeleton />;
-  }
 
   const states = data?.states || [];
 
   // Calculate summary statistics (MUTUALLY EXCLUSIVE - same logic as getCardStyle)
   const summary = useMemo(() => {
+    if (!states.length) return { total: 0, critical: 0, highRisk: 0, stable: 0, totalUpdates: 0 };
+
     // Count each state only once in its primary category
     const critical = states.filter(s => s.ivi >= 1000 || s.bsi >= 3.0);
     const highRisk = states.filter(s => 
@@ -43,9 +41,14 @@ export default function StatesPage() {
     };
   }, [states]);
 
+  if (isLoading) {
+    return <LoadingSkeleton />;
+  }
+
   // Filter and sort (MUTUALLY EXCLUSIVE)
   let filteredStates = states.filter(s => {
-    const matchesSearch = s.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const stateName = s.name || "";
+    const matchesSearch = stateName.toLowerCase().includes(searchTerm.toLowerCase());
     
     if (filterCategory === 'all') return matchesSearch;
     
@@ -284,7 +287,7 @@ export default function StatesPage() {
 
       {/* Grid View - Premium Design */}
       {viewMode === 'grid' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 animate-fade-in">
           {displayedStates.map((state) => {
             const cardStyle = getCardStyle(state);
             return (
@@ -371,7 +374,7 @@ export default function StatesPage() {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200 animate-fade-in">
               {displayedStates.map((state) => {
                 const cardStyle = getCardStyle(state);
                 return (

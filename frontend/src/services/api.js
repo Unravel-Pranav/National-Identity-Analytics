@@ -41,31 +41,34 @@ export const apiService = {
   // Health & Status
   health: () => api.get('/health'),
   
+  // Meta
+  getAvailableDates: () => api.get('/api/available-dates'),
+  
   // Summary & Overview
-  getSummary: () => api.get('/api/summary'),
+  getSummary: (params) => api.get('/api/summary', { params }),
   
   // States
-  getAllStates: () => api.get('/api/states'),
-  getStateDetail: (stateName) => api.get(`/api/states/${encodeURIComponent(stateName)}`),
-  compareStates: (state1, state2) => 
-    api.get(`/api/states/compare/${encodeURIComponent(state1)}/${encodeURIComponent(state2)}`),
+  getAllStates: (params) => api.get('/api/states', { params }),
+  getStateDetail: (stateName, params) => api.get(`/api/states/${encodeURIComponent(stateName)}`, { params }),
+  compareStates: (state1, state2, params) => 
+    api.get(`/api/states/compare/${encodeURIComponent(state1)}/${encodeURIComponent(state2)}`, { params }),
   
   // Clustering
-  getClustering: () => api.get('/api/clustering'),
+  getClustering: (params) => api.get('/api/clustering', { params }),
   
   // Anomalies
-  getAnomalies: (limit = 50) => api.get(`/api/anomalies?limit=${limit}`),
+  getAnomalies: (limit = 50, params) => api.get(`/api/anomalies`, { params: { limit, ...params } }),
   
   // Forecasting
-  getForecast: (metric, days = 30) => api.get(`/api/forecast/${metric}?days=${days}`),
+  getForecast: (metric, days = 30, params) => api.get(`/api/forecast/${metric}`, { params: { days, ...params } }),
   
   // Trends
-  getMonthlyTrends: () => api.get('/api/trends/monthly'),
-  getDailyTrends: (limit = 90) => api.get(`/api/trends/daily?limit=${limit}`),
+  getMonthlyTrends: (params) => api.get('/api/trends/monthly', { params }),
+  getDailyTrends: (limit = 90, params) => api.get(`/api/trends/daily`, { params: { limit, ...params } }),
   
   // Pincodes
-  getHighRiskPincodes: (limit = 100) => api.get(`/api/pincodes/high-risk?limit=${limit}`),
-  searchPincode: (pincode) => api.get(`/api/search/pincode/${pincode}`),
+  getHighRiskPincodes: (limit = 100, params) => api.get(`/api/pincodes/high-risk`, { params: { limit, ...params } }),
+  searchPincode: (pincode, params) => api.get(`/api/search/pincode/${pincode}`, { params }),
   
   // Cache
   clearCache: () => api.post('/api/cache/clear'),
