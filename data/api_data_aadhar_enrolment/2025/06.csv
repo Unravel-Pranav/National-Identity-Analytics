@@ -1,0 +1,583 @@
+date,state,district,pincode,age_0_5,age_5_17,age_18_greater
+01-06-2025,Bihar,Patna,801109,116,239,10
+01-06-2025,Uttar Pradesh,Rampur,244901,694,751,21
+01-06-2025,Maharashtra,Dhule,425408,131,55,11
+01-06-2025,Meghalaya,East Khasi Hills,793001,19,118,33
+01-06-2025,Bihar,Sitamarhi,843320,237,179,11
+01-06-2025,Assam,Cachar,788005,75,23,11
+01-06-2025,Assam,Baksa,781346,28,12,12
+01-06-2025,Meghalaya,West Garo Hills,794109,76,92,78
+01-06-2025,Bihar,Muzaffarpur,842002,175,214,23
+01-06-2025,Gujarat,Ahmadabad,380001,210,159,14
+01-06-2025,Bihar,Lakhisarai,811311,298,478,10
+01-06-2025,Bihar,Sitamarhi,843317,162,351,55
+01-06-2025,Haryana,Faridabad,121001,421,86,18
+01-06-2025,Uttar Pradesh,Gorakhpur,273015,82,223,10
+01-06-2025,Karnataka,Bengaluru Urban,560098,52,18,19
+01-06-2025,Karnataka,Bengaluru Urban,560029,67,27,19
+01-06-2025,Bihar,Bhagalpur,812005,236,306,31
+01-06-2025,Karnataka,Bengaluru Rural,560067,210,142,149
+01-06-2025,Uttar Pradesh,Sitapur,261208,77,93,12
+01-06-2025,Tamil Nadu,Kanchipuram,631502,264,76,11
+01-06-2025,Telangana,Hyderabad,500028,295,178,11
+01-06-2025,Punjab,Ludhiana,141007,257,159,17
+01-06-2025,West Bengal,24 Paraganas North,743263,92,77,13
+01-06-2025,Assam,Kokrajhar,783370,155,115,17
+01-06-2025,Meghalaya,West Garo Hills,794005,29,199,240
+01-06-2025,Gujarat,Gandhinagar,382721,204,67,41
+01-06-2025,Assam,Dima Hasao,788819,33,28,10
+01-06-2025,Bihar,Banka,813108,83,218,11
+01-06-2025,Assam,Kamrup Metro,781005,29,29,12
+01-06-2025,Bihar,Muzaffarpur,843115,158,196,10
+01-06-2025,Haryana,Faridabad,121002,197,84,14
+01-06-2025,Tamil Nadu,Salem,636006,90,21,11
+01-06-2025,Bihar,Muzaffarpur,843109,200,260,11
+01-06-2025,Maharashtra,Thane,421302,560,446,13
+01-06-2025,Uttar Pradesh,Bahraich,271825,53,115,13
+01-06-2025,Uttar Pradesh,Aligarh,250611,204,251,12
+01-06-2025,Uttar Pradesh,Bahraich,271881,72,167,32
+01-06-2025,Karnataka,Bengaluru Urban,560045,329,120,24
+01-06-2025,Gujarat,Rajkot,363520,114,194,16
+01-06-2025,Maharashtra,Hingoli,431712,261,62,14
+01-06-2025,The Dadra And Nagar Haveli And Daman And Diu,Dadra And Nagar Haveli,396230,188,49,12
+01-06-2025,Gujarat,Dang,394716,81,32,34
+01-06-2025,West Bengal,Kolkata,700006,50,77,15
+01-06-2025,Gujarat,Anand,388325,14,11,13
+01-06-2025,Meghalaya,East Khasi Hills,793112,11,67,54
+01-06-2025,Gujarat,Banas Kantha,385001,381,320,20
+01-06-2025,Assam,Lakhimpur,784160,69,91,22
+01-06-2025,Madhya Pradesh,Alirajpur,457882,68,111,13
+01-06-2025,Meghalaya,South West Garo Hills,794115,231,170,126
+01-06-2025,Assam,Sonitpur,784507,97,110,77
+01-06-2025,Mizoram,Lawngtlai,796891,119,43,11
+01-06-2025,Bihar,Pashchim Champaran,845450,88,262,10
+01-06-2025,Gujarat,Dohad,389380,167,40,10
+01-06-2025,Karnataka,Bengaluru Urban,560084,83,40,13
+01-06-2025,Madhya Pradesh,Burhanpur,450332,343,186,10
+01-06-2025,Bihar,Purbi Champaran,845305,194,416,93
+01-06-2025,Gujarat,Dang,394710,141,40,36
+01-06-2025,Bihar,Pashchim Champaran,845106,197,333,13
+01-06-2025,West Bengal,24 Paraganas North,700129,21,36,10
+01-06-2025,Bihar,Sitamarhi,843315,105,172,14
+01-06-2025,Haryana,Kaithal,136027,406,19,10
+01-06-2025,Uttar Pradesh,Bareilly,243001,298,369,21
+01-06-2025,Assam,Marigaon,782410,119,66,55
+01-06-2025,Assam,Kamrup Metro,781036,12,11,13
+01-06-2025,Bihar,Purnia,854326,209,169,14
+01-06-2025,Uttar Pradesh,Bahraich,271903,60,223,10
+01-06-2025,Madhya Pradesh,Burhanpur,450221,143,61,21
+01-06-2025,Delhi,South Delhi,110062,452,188,10
+01-06-2025,Karnataka,Bengaluru Urban,560064,313,156,44
+01-06-2025,Tamil Nadu,Vellore,635810,154,65,16
+01-06-2025,Punjab,Kapurthala,144401,68,37,12
+01-06-2025,Madhya Pradesh,Bhind,477557,257,110,13
+01-06-2025,Uttar Pradesh,Pilibhit,262001,569,307,11
+01-06-2025,Uttar Pradesh,Shravasti,271831,284,461,21
+01-06-2025,Meghalaya,South Garo Hills,794102,13,125,203
+01-06-2025,West Bengal,Nadia,741223,74,37,11
+01-06-2025,West Bengal,Alipurduar,736206,40,71,10
+01-06-2025,Uttar Pradesh,Bahraich,271801,243,421,32
+01-06-2025,Assam,Goalpara,783134,17,43,20
+01-06-2025,West Bengal,Darjeeling,734427,19,28,10
+01-06-2025,Bihar,Banka,813101,314,324,25
+01-06-2025,West Bengal,Nadia,741501,61,37,13
+01-06-2025,Meghalaya,East Khasi Hills,793006,11,63,32
+01-06-2025,Punjab,Ludhiana,141015,97,77,11
+01-06-2025,Bihar,Nalanda,803101,221,810,16
+01-06-2025,Rajasthan,Jaisalmer,345028,46,74,14
+01-06-2025,Bihar,Muzaffarpur,842004,64,96,10
+01-06-2025,Assam,Lakhimpur,787056,79,37,16
+01-06-2025,Tamil Nadu,Kallakurichi,605801,53,12,10
+01-06-2025,Bihar,Katihar,854108,197,117,10
+01-06-2025,Delhi,West Delhi,110059,1193,403,199
+01-06-2025,Karnataka,Bengaluru Urban,560068,278,231,167
+01-06-2025,Bihar,Siwan,841239,137,252,11
+01-06-2025,West Bengal,Alipurduar,735217,20,40,12
+01-06-2025,West Bengal,Birbhum,731204,139,65,17
+01-06-2025,Bihar,Muzaffarpur,843113,190,240,14
+01-06-2025,Assam,Barpeta,781308,148,114,19
+01-06-2025,Bihar,Kaimur (Bhabua),821109,165,536,10
+01-06-2025,Assam,Golaghat,785612,82,43,14
+01-06-2025,Tamil Nadu,Salem,636122,40,10,12
+01-06-2025,Bihar,Muzaffarpur,843119,287,244,13
+01-06-2025,Bihar,Munger,811213,117,279,10
+01-06-2025,Madhya Pradesh,Khargone,451332,242,258,26
+01-06-2025,Bihar,Saran,841424,108,453,11
+01-06-2025,Bihar,Patna,804453,102,404,10
+01-06-2025,Karnataka,Bengaluru Urban,560016,188,128,80
+01-06-2025,Uttar Pradesh,Farrukhabad,209739,73,102,11
+01-06-2025,West Bengal,Medinipur West,721201,45,67,10
+01-06-2025,Meghalaya,East Khasi Hills,793113,16,110,25
+01-06-2025,Karnataka,Bengaluru Urban,560103,45,61,96
+01-06-2025,Gujarat,Ahmadabad,382445,61,89,11
+01-06-2025,Assam,Cachar,788009,47,36,15
+01-06-2025,Tamil Nadu,Salem,636002,44,13,11
+01-06-2025,Bihar,Araria,854328,25,50,10
+01-06-2025,Delhi,West Delhi,110027,140,52,17
+01-06-2025,West Bengal,Darjeeling,734201,10,45,12
+01-06-2025,Bihar,Madhubani,847108,182,395,68
+01-06-2025,Maharashtra,Sangli,416410,240,105,11
+01-06-2025,Bihar,Purbi Champaran,845301,167,394,34
+01-06-2025,Punjab,Kapurthala,144601,114,30,56
+01-06-2025,West Bengal,24 Paraganas North,743248,35,27,15
+01-06-2025,Bihar,Bhagalpur,813213,161,330,34
+01-06-2025,Uttar Pradesh,Aligarh,202122,65,65,11
+01-06-2025,Meghalaya,West Garo Hills,794105,179,222,128
+01-06-2025,Karnataka,Bengaluru Urban,560010,93,31,28
+01-06-2025,Assam,Dibrugarh,786613,36,21,23
+01-06-2025,Maharashtra,Thane,401107,343,288,15
+01-06-2025,Uttar Pradesh,Bulandshahr,203205,166,297,14
+01-06-2025,Gujarat,Banas Kantha,385330,105,145,17
+01-06-2025,Delhi,East Delhi,110091,305,113,12
+01-06-2025,Maharashtra,Thane,400708,180,88,14
+01-06-2025,Bihar,Sitamarhi,843314,253,194,10
+01-06-2025,Haryana,Sonipat,131001,360,46,23
+01-06-2025,Bihar,Muzaffarpur,842001,117,218,28
+01-06-2025,Uttar Pradesh,Gautam Buddha Nagar,201310,109,202,12
+01-06-2025,Assam,Barpeta,781314,144,78,10
+01-06-2025,Uttar Pradesh,Mainpuri,205001,327,443,13
+01-06-2025,West Bengal,Nadia,741126,81,60,14
+01-06-2025,Assam,Marigaon,782127,100,59,11
+01-06-2025,Telangana,Hyderabad,500032,42,30,17
+01-06-2025,Madhya Pradesh,Sheopur,476337,368,430,11
+01-06-2025,Uttar Pradesh,Maharajganj,273305,24,105,14
+01-06-2025,Uttar Pradesh,Sitapur,261205,220,246,37
+01-06-2025,Bihar,Purbi Champaran,845418,248,562,24
+01-06-2025,Punjab,Hoshiarpur,146001,234,59,20
+01-06-2025,Mizoram,Champhai,796321,86,26,26
+01-06-2025,Maharashtra,Dhule,424305,64,28,32
+01-06-2025,Bihar,Saharsa,852106,147,219,10
+01-06-2025,Gujarat,Dohad,389382,57,89,59
+01-06-2025,West Bengal,Darjeeling,734429,38,43,31
+01-06-2025,Jharkhand,Chatra,825401,246,218,10
+01-06-2025,Karnataka,Bengaluru Urban,560091,268,87,29
+01-06-2025,Uttar Pradesh,Bareilly,243505,180,191,11
+01-06-2025,Chhattisgarh,Gaurella Pendra Marwahi,495118,115,54,19
+01-06-2025,Andhra Pradesh,Visakhapatanam,531029,186,28,12
+01-06-2025,Maharashtra,Nanded,431704,146,24,11
+01-06-2025,Karnataka,Bengaluru Urban,560092,68,33,24
+01-06-2025,Tamil Nadu,Kallakurichi,606401,112,43,13
+01-06-2025,West Bengal,Alipurduar,736202,37,68,11
+01-06-2025,Maharashtra,Buldhana,443001,306,51,11
+01-06-2025,Karnataka,Bengaluru Urban,560047,108,62,10
+01-06-2025,Uttar Pradesh,Shravasti,271803,42,103,28
+01-06-2025,Assam,Cachar,788114,47,23,13
+01-06-2025,Assam,Dhubri,783334,139,75,13
+01-06-2025,Meghalaya,Ri Bhoi,793102,42,226,189
+01-06-2025,Gujarat,Banas Kantha,385545,82,131,19
+01-06-2025,Meghalaya,East Jaintia Hills,793200,49,259,226
+01-06-2025,Bihar,Bhagalpur,811211,140,303,10
+01-06-2025,Maharashtra,Amravati,444601,280,77,11
+01-06-2025,Bihar,Araria,854318,453,338,15
+01-06-2025,Meghalaya,East Khasi Hills,793022,12,73,36
+01-06-2025,Karnataka,Bengaluru Urban,560058,131,42,23
+01-06-2025,Uttar Pradesh,Hardoi,241406,90,167,10
+01-06-2025,Uttar Pradesh,Shahjahanpur,242001,465,481,24
+01-06-2025,Bihar,Katihar,854105,163,228,10
+01-06-2025,Andhra Pradesh,Spsr Nellore,524345,87,44,24
+01-06-2025,Karnataka,Bengaluru Urban,560035,97,86,122
+01-06-2025,Andhra Pradesh,Spsr Nellore,524315,92,84,41
+01-06-2025,Gujarat,Ahmadabad,382421,147,59,13
+01-06-2025,Uttar Pradesh,Moradabad,244001,1067,731,28
+01-06-2025,Uttar Pradesh,Bahraich,271841,73,115,12
+01-06-2025,Uttar Pradesh,Bahraich,271865,220,515,59
+01-06-2025,West Bengal,24 Paraganas North,743287,30,21,17
+01-06-2025,Tripura,Dhalai,799289,33,25,10
+01-06-2025,Assam,Cachar,788002,54,31,12
+01-06-2025,Uttar Pradesh,Agra,282002,165,154,27
+01-06-2025,Bihar,Araria,854304,372,399,14
+01-06-2025,Gujarat,Banas Kantha,385320,156,191,36
+01-06-2025,Bihar,Muzaffarpur,843111,301,489,17
+01-06-2025,Bihar,Purnia,854303,129,143,21
+01-06-2025,Delhi,East Delhi,110092,355,186,14
+01-06-2025,Maharashtra,Thane,421501,146,98,21
+01-06-2025,Bihar,Muzaffarpur,843108,70,123,14
+01-06-2025,Madhya Pradesh,Indore,452001,411,138,12
+01-06-2025,Gujarat,Bhavnagar,364290,189,39,11
+01-06-2025,Maharashtra,Dhule,424304,122,100,76
+01-06-2025,Gujarat,Patan,384151,207,80,11
+01-06-2025,Uttar Pradesh,Balrampur,271604,150,497,16
+01-06-2025,Jharkhand,Pakur,816107,501,590,16
+01-06-2025,Assam,Dhemaji,787060,105,86,41
+01-06-2025,West Bengal,Dinajpur Uttar,733129,104,107,67
+01-06-2025,Uttar Pradesh,Ghaziabad,201001,487,470,12
+01-06-2025,Gujarat,Anand,388001,134,46,11
+01-06-2025,Assam,Golaghat,785621,58,72,32
+01-06-2025,Kerala,Ernakulam,686673,70,58,11
+01-06-2025,Tamil Nadu,Vellore,632602,105,22,11
+01-06-2025,Assam,Barpeta,781317,155,51,29
+01-06-2025,Bihar,Sitamarhi,843332,156,227,34
+01-06-2025,Uttar Pradesh,Kheri,262903,102,134,10
+01-06-2025,Maharashtra,Thane,400703,44,20,32
+01-06-2025,Bihar,Sitamarhi,843331,407,333,41
+01-06-2025,Delhi,New Delhi,110037,101,44,16
+01-06-2025,Gujarat,Dohad,389140,48,131,10
+01-06-2025,Uttar Pradesh,Agra,282006,247,282,10
+01-06-2025,Rajasthan,Bhilwara,311603,62,31,10
+01-06-2025,Jharkhand,Dumka,814119,74,110,14
+01-06-2025,Assam,Dhemaji,787061,30,40,14
+01-06-2025,Assam,Cachar,788116,68,37,14
+01-06-2025,Haryana,Faridabad,121004,920,243,30
+01-06-2025,Assam,Barpeta,781313,77,30,23
+01-06-2025,Bihar,Bhagalpur,813203,118,173,11
+01-06-2025,Assam,Bongaigaon,783371,33,14,14
+01-06-2025,Madhya Pradesh,Gwalior,475330,108,99,12
+01-06-2025,Uttar Pradesh,Bareilly,243201,333,203,14
+01-06-2025,Maharashtra,Thane,400612,430,432,28
+01-06-2025,Bihar,Purbi Champaran,845440,53,117,11
+01-06-2025,Assam,West Karbi Anglong,782486,19,87,57
+01-06-2025,Bihar,Pashchim Champaran,845306,188,364,31
+01-06-2025,Uttar Pradesh,Hathras,204101,174,282,12
+01-06-2025,Madhya Pradesh,Alirajpur,457887,93,72,17
+01-06-2025,Bihar,Purbi Champaran,845303,148,657,39
+01-06-2025,West Bengal,Darjeeling,734010,18,27,29
+01-06-2025,Assam,Marigaon,782105,102,42,21
+01-06-2025,Meghalaya,South West Khasi Hills,793114,24,119,96
+01-06-2025,Uttar Pradesh,Unnao,209801,401,723,21
+01-06-2025,Bihar,Pashchim Champaran,845438,351,852,40
+01-06-2025,Madhya Pradesh,Chhatarpur,471606,90,140,15
+01-06-2025,Madhya Pradesh,Gwalior,474001,436,177,29
+01-06-2025,Assam,Kamrup Metro,781017,14,14,40
+01-06-2025,Uttarakhand,Dehradun,248001,160,80,54
+01-06-2025,Jharkhand,Ranchi,834002,104,105,18
+01-06-2025,Nagaland,Peren,797110,37,141,10
+01-06-2025,Uttar Pradesh,Amroha,244221,329,240,10
+01-06-2025,Tamil Nadu,Ramanathapuram,623536,23,10,10
+01-06-2025,Delhi,South West Delhi,110045,202,90,29
+01-06-2025,West Bengal,Malda,732124,115,127,10
+01-06-2025,Assam,Cachar,788098,44,40,10
+01-06-2025,Maharashtra,Thane,421503,264,158,20
+01-06-2025,Karnataka,Bengaluru Urban,560001,40,23,12
+01-06-2025,West Bengal,Alipurduar,736182,21,48,31
+01-06-2025,Assam,Karimganj,788724,104,109,15
+01-06-2025,Nagaland,Dimapur,797112,105,240,32
+01-06-2025,Maharashtra,Latur,413517,390,140,15
+01-06-2025,Gujarat,Kachchh,370201,73,49,11
+01-06-2025,Nagaland,Mon,798621,39,121,14
+01-06-2025,Bihar,Pashchim Champaran,845455,323,475,42
+01-06-2025,Karnataka,Bengaluru Urban,560062,140,71,22
+01-06-2025,Meghalaya,East Khasi Hills,793111,72,209,75
+01-06-2025,West Bengal,Dinajpur Uttar,733202,374,393,12
+01-06-2025,Assam,Darrang,784114,63,25,10
+01-06-2025,Bihar,Sitamarhi,843313,120,169,26
+01-06-2025,Bihar,Madhubani,847403,129,157,10
+01-06-2025,Meghalaya,East Jaintia Hills,793160,47,155,82
+01-06-2025,Uttar Pradesh,Agra,282001,591,542,33
+01-06-2025,Karnataka,Raichur,584128,290,127,11
+01-06-2025,Assam,Cachar,788001,28,19,12
+01-06-2025,Chhattisgarh,Bijapur,494444,169,174,98
+01-06-2025,Assam,Marigaon,782126,37,51,10
+01-06-2025,Bihar,Gaya,824236,71,483,16
+01-06-2025,Gujarat,Ahmadabad,380016,107,60,12
+01-06-2025,Karnataka,Bengaluru Urban,560024,55,36,20
+01-06-2025,Assam,Golaghat,785625,154,114,51
+01-06-2025,Uttar Pradesh,Sultanpur,228001,130,223,10
+01-06-2025,Uttar Pradesh,Varanasi,221001,297,602,15
+01-06-2025,Assam,Karimganj,788713,30,35,10
+01-06-2025,Meghalaya,West Garo Hills,794104,160,205,148
+01-06-2025,Rajasthan,Nagaur,341001,554,363,10
+01-06-2025,Telangana,Hyderabad,500008,353,271,21
+01-06-2025,Uttar Pradesh,Agra,282005,127,197,13
+01-06-2025,West Bengal,Jalpaiguri,735135,35,49,35
+01-06-2025,Haryana,Gurugram,122002,62,35,43
+01-06-2025,Gujarat,Vadodara,391770,29,10,11
+01-06-2025,Assam,Golaghat,785702,62,109,39
+01-06-2025,Maharashtra,Beed,431123,175,81,13
+01-06-2025,Maharashtra,Palghar,401209,252,252,10
+01-06-2025,Delhi,North Delhi,110040,151,151,11
+01-06-2025,Karnataka,Bengaluru Rural,560087,108,72,91
+01-06-2025,Madhya Pradesh,Burhanpur,450331,656,327,30
+01-06-2025,Haryana,Rohtak,124001,420,56,52
+01-06-2025,Madhya Pradesh,Morena,476001,678,399,27
+01-06-2025,Delhi,New Delhi,110061,33,26,19
+01-06-2025,Uttar Pradesh,Bahraich,271830,70,266,46
+01-06-2025,Jharkhand,Gumla,835207,228,131,10
+01-06-2025,Gujarat,Morbi,363641,534,256,10
+01-06-2025,Tamil Nadu,Ramanathapuram,623517,69,28,12
+01-06-2025,Delhi,Central Delhi,110005,134,49,11
+01-06-2025,Karnataka,Bengaluru Urban,560036,142,144,44
+01-06-2025,Punjab,Ludhiana,141012,42,14,14
+01-06-2025,Karnataka,Bengaluru Urban,560048,80,59,85
+01-06-2025,Bihar,Purbi Champaran,845401,184,686,16
+01-06-2025,Rajasthan,Barmer,344702,684,259,10
+01-06-2025,Haryana,Kurukshetra,136119,72,10,11
+01-06-2025,Rajasthan,Churu,331403,253,269,13
+01-06-2025,Madhya Pradesh,Bhind,477445,121,105,26
+01-06-2025,Delhi,North Delhi,110039,181,93,11
+01-06-2025,Bihar,Nalanda,805130,86,343,21
+01-06-2025,Karnataka,Bengaluru Urban,560094,81,40,16
+01-06-2025,Meghalaya,East Garo Hills,794111,40,236,223
+01-06-2025,Bihar,Pashchim Champaran,845452,185,481,17
+01-06-2025,Bihar,Gopalganj,841428,204,393,22
+01-06-2025,Uttar Pradesh,Aligarh,202136,53,33,10
+01-06-2025,Madhya Pradesh,Morena,476221,527,336,26
+01-06-2025,Assam,Golaghat,785603,27,38,26
+01-06-2025,West Bengal,Darjeeling,734003,27,59,26
+01-06-2025,West Bengal,Dinajpur Uttar,733134,250,116,17
+01-06-2025,Uttar Pradesh,Mathura,281004,163,219,10
+01-06-2025,Uttar Pradesh,Hardoi,241001,558,590,13
+01-06-2025,Bihar,Madhubani,847225,217,186,10
+01-06-2025,Meghalaya,South Garo Hills,794107,10,34,23
+01-06-2025,Uttar Pradesh,Fatehpur,212601,251,344,14
+01-06-2025,Maharashtra,Nanded,431715,286,100,17
+01-06-2025,Assam,Dibrugarh,786612,14,13,22
+01-06-2025,Meghalaya,West Jaintia Hills,793109,17,109,131
+01-06-2025,Gujarat,Banas Kantha,385570,37,40,12
+01-06-2025,Haryana,Nuh,122508,902,150,27
+01-06-2025,Uttar Pradesh,Lucknow,226005,81,123,19
+01-06-2025,Bihar,Purnia,854301,143,193,11
+01-06-2025,Maharashtra,Thane,400604,141,86,10
+01-06-2025,Jharkhand,Ranchi,834001,155,168,16
+01-06-2025,Bihar,Bhagalpur,853204,325,495,22
+01-06-2025,Bihar,Gopalganj,841405,148,249,19
+01-06-2025,Karnataka,Bengaluru Urban,560078,156,118,31
+01-06-2025,Assam,Cachar,788119,88,46,10
+01-06-2025,Bihar,Bhagalpur,853202,142,221,12
+01-06-2025,Madhya Pradesh,Ashoknagar,473443,291,238,12
+01-06-2025,Uttar Pradesh,Agra,283201,192,104,18
+01-06-2025,Gujarat,Banas Kantha,385535,483,502,21
+01-06-2025,Bihar,Saharsa,852127,172,268,10
+01-06-2025,Maharashtra,Thane,400701,99,58,16
+01-06-2025,West Bengal,Kolkata,700016,25,39,11
+01-06-2025,Karnataka,Bengaluru Urban,560066,149,121,93
+01-06-2025,Bihar,Purbi Champaran,845315,45,187,10
+01-06-2025,Tamil Nadu,Vellore,632001,108,15,14
+01-06-2025,Madhya Pradesh,Gwalior,475220,164,167,13
+01-06-2025,Assam,Golaghat,785614,136,66,12
+01-06-2025,Bihar,Sitamarhi,843316,230,218,11
+01-06-2025,Bihar,Gaya,824231,97,349,10
+01-06-2025,Bihar,Siwan,841237,48,46,10
+01-06-2025,Karnataka,Bengaluru Urban,560005,76,41,24
+01-06-2025,Uttar Pradesh,Sitapur,261201,395,348,14
+01-06-2025,Assam,Cachar,788030,79,76,13
+01-06-2025,Rajasthan,Bikaner,334001,511,287,20
+01-06-2025,Uttar Pradesh,Agra,282010,156,191,17
+01-06-2025,Madhya Pradesh,Barwani,451551,394,361,20
+01-06-2025,Uttar Pradesh,Shahjahanpur,242042,151,162,12
+01-06-2025,Uttar Pradesh,Agra,282007,211,295,21
+01-06-2025,Madhya Pradesh,Chhatarpur,471105,89,105,16
+01-06-2025,Gujarat,Banas Kantha,385310,215,346,31
+01-06-2025,Uttar Pradesh,Aligarh,262907,62,100,12
+01-06-2025,Uttar Pradesh,Shahjahanpur,242127,120,275,19
+01-06-2025,Assam,Golaghat,785705,42,60,28
+01-06-2025,Andhra Pradesh,Spsr Nellore,524304,15,29,18
+01-06-2025,Punjab,Ludhiana,141008,274,145,12
+01-06-2025,Uttar Pradesh,Meerut,245206,79,168,10
+01-06-2025,Gujarat,Chhotaudepur,391110,97,34,10
+01-06-2025,Uttar Pradesh,Bahraich,271855,291,449,56
+01-06-2025,Kerala,Thrissur,680307,15,22,10
+01-06-2025,West Bengal,Coochbehar,735224,47,46,12
+01-06-2025,Punjab,S.A.S Nagar,140301,193,75,14
+01-06-2025,Bihar,Sitamarhi,843302,597,595,31
+01-06-2025,Uttar Pradesh,Azamgarh,276001,109,333,10
+01-06-2025,Bihar,Gaya,824201,347,509,11
+01-06-2025,Meghalaya,Ri Bhoi,793103,27,172,127
+01-06-2025,West Bengal,Kolkata,700023,45,76,17
+01-06-2025,Uttar Pradesh,Kanpur Nagar,208001,307,526,23
+01-06-2025,West Bengal,24 Paraganas North,700125,92,53,16
+01-06-2025,Haryana,Nuh,122108,349,63,15
+01-06-2025,Uttar Pradesh,Pilibhit,262201,457,321,14
+01-06-2025,Gujarat,Dohad,389170,192,397,21
+01-06-2025,Karnataka,Bengaluru Urban,560100,174,160,57
+01-06-2025,Uttar Pradesh,Bareilly,243503,325,303,13
+01-06-2025,Delhi,West Delhi,110018,249,132,29
+01-06-2025,Gujarat,Vadodara,390019,233,114,15
+01-06-2025,Gujarat,Dohad,389180,157,365,27
+01-06-2025,Rajasthan,Sirohi,307026,216,289,28
+01-06-2025,Bihar,Katihar,854114,128,118,14
+01-06-2025,Karnataka,Bengaluru Urban,560093,34,46,43
+01-06-2025,Tamil Nadu,Salem,636010,82,24,11
+01-06-2025,Assam,Karimganj,788710,21,15,17
+01-06-2025,Assam,Dibrugarh,785675,35,18,17
+01-06-2025,Madhya Pradesh,Morena,476444,122,137,17
+01-06-2025,Assam,Karimganj,788709,43,54,19
+01-06-2025,Karnataka,Bengaluru Urban,560008,63,37,15
+01-06-2025,Madhya Pradesh,Alirajpur,457893,50,126,11
+01-06-2025,Bihar,Purbi Champaran,845427,80,145,11
+01-06-2025,Assam,Nagaon,782450,24,67,65
+01-06-2025,Meghalaya,South Garo Hills,794114,19,38,86
+01-06-2025,Bihar,Sitamarhi,843324,418,479,139
+01-06-2025,Punjab,Ludhiana,141001,237,125,10
+01-06-2025,West Bengal,Darjeeling,734001,30,56,17
+01-06-2025,Bihar,Purbi Champaran,845302,172,434,23
+01-06-2025,Uttar Pradesh,Mathura,281121,64,62,10
+01-06-2025,Bihar,Purbi Champaran,845304,87,215,30
+01-06-2025,Maharashtra,Chandrapur,442401,198,24,10
+01-06-2025,Uttar Pradesh,Maharajganj,273164,71,257,17
+01-06-2025,Assam,Cachar,788099,32,20,12
+01-06-2025,Karnataka,Bengaluru Urban,560102,56,57,50
+01-06-2025,Gujarat,Botad,364710,289,64,11
+01-06-2025,Meghalaya,East Khasi Hills,793002,14,88,27
+01-06-2025,Karnataka,Bengaluru Urban,560085,115,49,13
+01-06-2025,West Bengal,24 Paraganas North,700110,53,53,15
+01-06-2025,Meghalaya,West Garo Hills,794103,62,197,244
+01-06-2025,Delhi,North West Delhi,110034,217,96,16
+01-06-2025,Madhya Pradesh,Dhar,454001,391,265,33
+01-06-2025,West Bengal,Nadia,741502,64,42,34
+01-06-2025,Chhattisgarh,Gaurella Pendra Marwahi,495119,288,131,24
+01-06-2025,West Bengal,Dinajpur Uttar,733207,567,637,22
+01-06-2025,Uttar Pradesh,Kheri,262804,102,162,11
+01-06-2025,Bihar,Madhubani,847227,122,247,13
+01-06-2025,Meghalaya,East Garo Hills,794110,30,233,118
+01-06-2025,Uttar Pradesh,Gorakhpur,273001,86,230,17
+01-06-2025,Bihar,Pashchim Champaran,845454,173,543,24
+01-06-2025,West Bengal,Jalpaiguri,735218,24,49,12
+01-06-2025,Meghalaya,West Khasi Hills,793119,85,889,512
+01-06-2025,Uttar Pradesh,Hardoi,241404,160,229,10
+01-06-2025,Meghalaya,West Khasi Hills,793120,44,407,240
+01-06-2025,Assam,Dibrugarh,786611,11,11,33
+01-06-2025,Assam,Dibrugarh,786003,15,19,11
+01-06-2025,Bihar,Gopalganj,841438,225,503,10
+01-06-2025,Meghalaya,East Khasi Hills,793110,22,275,210
+01-06-2025,Madhya Pradesh,Katni,483775,195,88,10
+01-06-2025,Bihar,Pashchim Champaran,845307,154,301,26
+01-06-2025,Uttar Pradesh,Aligarh,202126,85,54,12
+01-06-2025,Maharashtra,Beed,431122,484,213,33
+01-06-2025,Tripura,Dhalai,799275,27,62,10
+01-06-2025,Bihar,Bhagalpur,812004,104,185,11
+01-06-2025,Assam,Karimganj,788712,55,64,36
+01-06-2025,Madhya Pradesh,Bhopal,462001,520,83,14
+01-06-2025,Maharashtra,Satara,415523,136,55,10
+01-06-2025,Gujarat,Morbi,363621,243,110,16
+01-06-2025,Punjab,Ludhiana,141003,188,125,26
+01-06-2025,Rajasthan,Jodhpur,342001,520,204,27
+01-06-2025,Bihar,Purnia,854205,139,236,11
+01-06-2025,Delhi,North East Delhi,110094,998,569,10
+01-06-2025,Karnataka,Bengaluru Urban,560097,165,84,14
+01-06-2025,Bihar,Madhubani,847421,93,203,41
+01-06-2025,West Bengal,Purba Bardhaman,713126,28,18,12
+01-06-2025,Chhattisgarh,Bijapur,494447,36,80,75
+01-06-2025,Karnataka,Bengaluru Urban,560099,114,76,24
+01-06-2025,Meghalaya,East Khasi Hills,793004,17,60,20
+01-06-2025,Madhya Pradesh,Sagar,470227,131,53,17
+01-06-2025,Uttar Pradesh,Gorakhpur,273008,45,119,14
+01-06-2025,Uttar Pradesh,Baghpat,250101,61,171,12
+01-06-2025,Madhya Pradesh,Gwalior,475110,356,346,23
+01-06-2025,Maharashtra,Thane,400705,53,27,11
+01-06-2025,Uttar Pradesh,Ghaziabad,201102,449,628,14
+01-06-2025,Haryana,Ambala,134003,245,23,13
+01-06-2025,Maharashtra,Thane,400706,84,34,30
+01-06-2025,Karnataka,Bengaluru Urban,560032,249,88,25
+01-06-2025,Uttar Pradesh,Jalaun,285001,228,277,16
+01-06-2025,Uttar Pradesh,Aligarh,202155,53,47,13
+01-06-2025,Assam,Barpeta,781315,175,103,23
+01-06-2025,Uttar Pradesh,Firozabad,283204,218,244,10
+01-06-2025,Madhya Pradesh,Chhatarpur,471625,93,156,10
+01-06-2025,Bihar,Jamui,811307,258,298,13
+01-06-2025,Madhya Pradesh,Ashoknagar,473335,146,170,11
+01-06-2025,Uttar Pradesh,Chandauli,232101,138,314,15
+01-06-2025,West Bengal,Darjeeling,734013,23,24,17
+01-06-2025,Gujarat,Ahmadabad,382350,160,113,10
+01-06-2025,Uttar Pradesh,Bahraich,271902,101,328,27
+01-06-2025,Madhya Pradesh,Jhabua,457661,261,628,10
+01-06-2025,Meghalaya,East Khasi Hills,793005,12,85,73
+01-06-2025,Meghalaya,South West Khasi Hills,793106,30,65,50
+01-06-2025,Assam,West Karbi Anglong,782485,33,46,53
+01-06-2025,West Bengal,Darjeeling,734008,10,23,12
+01-06-2025,West Bengal,24 Paraganas North,743127,78,59,10
+01-06-2025,Uttar Pradesh,Gautam Buddha Nagar,201306,229,290,15
+01-06-2025,Madhya Pradesh,Bhopal,462022,170,32,14
+01-06-2025,Bihar,Madhubani,847232,133,191,28
+01-06-2025,Uttar Pradesh,Bareilly,243202,106,132,16
+01-06-2025,Delhi,New Delhi,110003,78,30,16
+01-06-2025,Gujarat,Dohad,389155,123,215,17
+01-06-2025,Uttar Pradesh,Budaun,243601,210,353,12
+01-06-2025,Meghalaya,East Khasi Hills,793108,19,97,53
+01-06-2025,Bihar,Pashchim Champaran,845449,140,382,20
+01-06-2025,Madhya Pradesh,Dhar,454446,501,305,32
+01-06-2025,Uttar Pradesh,Firozabad,283203,1350,565,11
+01-06-2025,West Bengal,Darjeeling,734101,28,11,12
+01-06-2025,Uttar Pradesh,Sitapur,261135,217,296,10
+01-06-2025,Andhra Pradesh,Spsr Nellore,524305,121,46,16
+01-06-2025,Haryana,Faridabad,121003,160,70,21
+01-06-2025,Haryana,Panipat,132103,776,87,14
+01-06-2025,Assam,Cachar,788101,64,42,14
+01-06-2025,Assam,Cachar,782448,76,94,29
+01-06-2025,Karnataka,Bengaluru Urban,560075,46,41,30
+01-06-2025,Rajasthan,Alwar,301001,670,240,13
+01-06-2025,Meghalaya,East Khasi Hills,793015,36,302,129
+01-06-2025,Rajasthan,Bikaner,331803,210,252,13
+01-06-2025,West Bengal,Kolkata,700004,23,19,34
+01-06-2025,Assam,Cachar,788104,77,43,11
+01-06-2025,Bihar,Saran,841403,114,411,14
+01-06-2025,Andhra Pradesh,Spsr Nellore,524201,222,65,45
+01-06-2025,Bihar,Pashchim Champaran,845451,170,306,16
+01-06-2025,Maharashtra,Dhule,425405,315,216,13
+01-06-2025,Meghalaya,South West Garo Hills,794106,33,39,19
+01-06-2025,Andhra Pradesh,Spsr Nellore,524411,54,36,19
+01-06-2025,Meghalaya,West Garo Hills,794001,15,77,16
+01-06-2025,Karnataka,Bengaluru Urban,560038,28,22,20
+01-06-2025,Uttar Pradesh,Ghaziabad,201005,209,195,16
+01-06-2025,Bihar,Bhagalpur,813210,181,280,19
+01-06-2025,Uttar Pradesh,Saharanpur,247001,929,585,14
+01-06-2025,Madhya Pradesh,Bhind,477116,129,113,11
+01-06-2025,Uttar Pradesh,Unnao,209821,96,169,36
+01-06-2025,Assam,Cachar,788107,68,54,25
+01-06-2025,Manipur,Churachandpur,795128,91,499,13
+01-06-2025,Bihar,Darbhanga,847121,255,183,10
+01-06-2025,Uttar Pradesh,Sitapur,261207,89,151,14
+01-06-2025,Meghalaya,West Jaintia Hills,793151,47,319,168
+01-06-2025,Assam,Marigaon,782412,22,13,10
+01-06-2025,Delhi,South Delhi,110024,41,16,13
+01-06-2025,Jharkhand,Lohardaga,835302,165,174,21
+01-06-2025,Bihar,Sitamarhi,843330,154,209,139
+01-06-2025,Uttar Pradesh,Kanpur Nagar,209402,40,71,16
+01-06-2025,Karnataka,Bengaluru Urban,560061,143,89,24
+01-06-2025,Uttar Pradesh,Ayodhya,224188,38,32,12
+01-06-2025,Madhya Pradesh,Shivpuri,473551,326,430,27
+01-06-2025,Gujarat,Vadodara,391240,72,15,11
+01-06-2025,Tamil Nadu,Salem,636015,79,27,19
+01-06-2025,Maharashtra,Pune,411014,142,83,11
+01-06-2025,Uttar Pradesh,Agra,282003,86,95,15
+01-06-2025,Assam,Dibrugarh,786010,146,21,17
+01-06-2025,Bihar,Purbi Champaran,845433,171,501,44
+01-06-2025,Haryana,Gurugram,122001,472,172,38
+01-06-2025,West Bengal,Alipurduar,735211,89,125,10
+01-06-2025,Delhi,North West Delhi,110085,371,88,10
+01-06-2025,Assam,Lakhimpur,787032,59,53,25
+01-06-2025,Rajasthan,Bhilwara,311001,368,86,10
+01-06-2025,Uttar Pradesh,Hardoi,241124,315,382,11
+01-06-2025,Assam,Dhubri,783348,184,123,11
+01-06-2025,Assam,Kamrup,781354,133,51,23
+01-06-2025,Uttar Pradesh,Mathura,272153,240,609,12
+01-06-2025,Delhi,South Delhi,110017,126,45,20
+01-06-2025,Maharashtra,Thane,400709,88,32,12
+01-06-2025,Meghalaya,West Jaintia Hills,793150,128,589,335
+01-06-2025,Andhra Pradesh,Spsr Nellore,524308,53,21,11
+01-06-2025,Karnataka,Bengaluru Urban,560037,124,137,168
+01-06-2025,West Bengal,Jalpaiguri,735202,15,78,18
+01-06-2025,West Bengal,Kolkata,700039,78,117,10
+01-06-2025,Assam,Dibrugarh,786101,156,24,11
+01-06-2025,Jharkhand,Khunti,835216,91,148,11
+01-06-2025,Karnataka,Bengaluru Urban,560076,159,136,57
+01-06-2025,Telangana,Medchal Malkajgiri,500072,159,119,20
+01-06-2025,Assam,Sivasagar,785640,37,33,10
+01-06-2025,Gujarat,Dohad,389175,93,87,20
+01-06-2025,Andhra Pradesh,Spsr Nellore,524309,44,23,13
+01-06-2025,Bihar,Patna,801110,102,366,18
+01-06-2025,Haryana,Hisar,125001,350,46,10
+01-06-2025,Madhya Pradesh,Alirajpur,457990,165,277,43
+01-06-2025,Assam,Marigaon,782104,32,19,11
+01-06-2025,Assam,Jorhat,785630,24,19,13
+01-06-2025,Uttar Pradesh,Aligarh,202001,725,741,27
+01-06-2025,Tamil Nadu,Sivaganga,630302,70,13,10
+01-06-2025,Karnataka,Bengaluru Urban,560077,172,148,82
+01-06-2025,Assam,Hojai,782446,277,76,11
+01-06-2025,Maharashtra,Dhule,424306,161,85,79
+01-06-2025,Uttar Pradesh,Banda,210001,324,451,12
+01-06-2025,Uttar Pradesh,Siddharth Nagar,272192,103,278,12
+01-06-2025,Karnataka,Bengaluru Urban,560034,28,14,11
+01-06-2025,Karnataka,Bengaluru Urban,562125,125,72,12
+01-06-2025,Karnataka,Bengaluru Urban,560043,228,192,148
+01-06-2025,West Bengal,24 Paraganas North,743423,139,73,15
+01-06-2025,Karnataka,Bengaluru Rural,560049,193,98,71
+01-06-2025,Bihar,Jamui,811301,65,128,10
+01-06-2025,Tamil Nadu,Madurai,625106,62,14,12
+01-06-2025,Gujarat,Dohad,389151,325,511,27
+01-06-2025,Uttar Pradesh,Kheri,261121,154,195,12
+01-06-2025,Gujarat,Porbandar,360575,209,57,11
+01-06-2025,Andhra Pradesh,Spsr Nellore,524322,54,57,14
+01-06-2025,Meghalaya,East Khasi Hills,793121,26,328,211
+01-06-2025,Uttar Pradesh,Gautam Buddha Nagar,201301,467,525,60
+01-06-2025,Madhya Pradesh,Barwani,451666,673,745,40
+01-06-2025,Gujarat,Mahisagar,389260,106,37,18
