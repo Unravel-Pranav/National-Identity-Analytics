@@ -25,8 +25,8 @@
 </p>
 
 <p align="center">
-  <a href="#">VC Wallet Demo</a> •
-  <a href="#">Analytics Web Dashboard Demo</a>
+  <a href="https://drive.google.com/file/d/1cLIenbPpZ1w6wnslqrjDBvIyBuAuqMRf/view?usp=sharing">VC Wallet Demo</a> •
+  <a href="https://drive.google.com/file/d/15UgQSCB2vIiHkLK2vv_JRwo-nv1_AoTg/view?usp=drive_link">Analytics Web Dashboard Demo</a>
 </p>
 
 ---
