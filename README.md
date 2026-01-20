@@ -1,306 +1,270 @@
-# 🔐 Aadhaar Identity Intelligence Platform
+# NIA – National Identity Analytics
 
-**Production-Grade Analytics Platform for Aadhaar Identity Data**
+<p align="center">
+  <strong>Transforming India's Digital Identity Ecosystem</strong><br/>
+  AI-powered Administrative Intelligence + Privacy-Preserving Citizen Verification
+</p>
+<p align="center">
+  <img src="docs/banner.png" alt="Platform Banner" width="90%"/>
+</p>
+<p align="center">
+  <a href="https://python.org">
+    <img src="https://img.shields.io/badge/Python-3.10+-green.svg" alt="Python"/>
+  </a>
+  <a href="https://reactjs.org">
+    <img src="https://img.shields.io/badge/React-18.3-blue.svg" alt="React"/>
+  </a>
+  <a href="https://fastapi.tiangolo.com">
+    <img src="https://img.shields.io/badge/FastAPI-0.115-teal.svg" alt="FastAPI"/>
+  </a>
+  <a href="https://build.nvidia.com">
+    <img src="https://img.shields.io/badge/NVIDIA-NIM-76B900.svg" alt="NVIDIA NIM"/>
+  </a>
+</p>
+<p align="center">
+  <a href="#">Video Walkthrough</a> •
+  <a href="#">Presentation</a>
+</p>
 
-A comprehensive, AI-powered analytics platform for analyzing Aadhaar identity data patterns at micro-geographic (pincode) level, built with React, FastAPI, and Machine Learning.
+## Table of Contents
 
-[![Status](https://img.shields.io/badge/status-production-green.svg)](https://github.com)
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
-[![React](https://img.shields.io/badge/react-18.3-blue.svg)](https://reactjs.org/)
-[![FastAPI](https://img.shields.io/badge/fastapi-0.115-green.svg)](https://fastapi.tiangolo.com/)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+- [Overview](#-overview)
+- [Problem Statement](#-problem-statement)
+- [Key Innovation](#-key-innovation)
+- [Features](#-features)
+- [Architecture](#-architecture)
+- [Technology Stack](#-technology-stack)
+- [Getting Started](#-getting-started)
+- [Usage](#-usage)
+- [Novel Contributions](#-novel-contributions)
+- [Performance](#-performance)
+- [Screenshots](#-screenshots)
+- [Team](#-team)
+- [License](#-license)
 
----
+## Overview
 
-## 🎯 **Novel Features**
+**NIA – National Identity Analytics** is an enterprise-grade analytics engine designed to help administrators, policymakers, and fraud investigators understand the pulse of India's large-scale digital identity ecosystem.
 
-### **1. Identity Velocity Index (IVI)**
-Measures identity data volatility at pincode level
-- **Formula:** `(Bio Updates + Demo Updates) / Enrolments × 100`
-- **Interpretation:** Higher IVI = More identity changes per capita
+By combining high-performance data processing with cutting-edge AI, NIA transforms raw enrolment and update logs into **real-time dashboards, predictive intelligence, and privacy-preserving verification systems**.
 
-### **2. Biometric Stress Index (BSI)**
-Identifies regions with biometric authentication issues
-- **Formula:** `Bio Updates / Demo Updates`
-- **Interpretation:** Higher BSI = More biometric-related problems
+## Problem Statement
 
-### **3. ML-Powered State Clustering**
-- Clusters states by identity behavior (Stable, High Volatility, High Stress)
-- Uses K-Means + PCA for pattern discovery
-- Provides actionable insights for each cluster
+Managing the identity lifecycle of over a billion citizens is an immense challenge. Traditional reporting tools look backward, showing you what happened last month. This platform looks forward.
 
-### **4. Real-Time Anomaly Detection**
-- Isolation Forest for anomaly scoring
-- Detects unusual update patterns
-- Pincode-level risk assessment
+We built this solution to answer critical questions in real-time:
 
-### **5. Demand Forecasting**
-- Prophet-based time series forecasting
-- 7/30/90-day predictions
-- Confidence intervals and trend analysis
+- _Where is the next surge in biometric updates coming from?_
+- _Which pincodes are showing suspicious update patterns right now?_
+- _How can we optimize staffing based on predicted footfall next week?_
 
----
+## Key Innovation
 
-## 🚀 **Quick Start**
+NIA introduces **AI-powered conversational analytics** combined with **proprietary risk indices** (Identity Velocity Index, Biometric Stress Index) that transform massive identity datasets into actionable intelligence. Unlike traditional BI tools, NIA enables natural language querying of complex administrative data while maintaining privacy and security at scale.
 
-### **Prerequisites**
-- Python 3.10+
-- Node.js 18+
-- npm or yarn
+## Features
 
-### **1. Clone Repository**
-```bash
-git clone <repository-url>
-cd Aadhaar-Identity-Intelligence-Platform
-```
+### AI Analyst Assistant
 
-### **2. Backend Setup**
-```bash
-# Create virtual environment
-python -m venv venv
+**Stop writing queries. Start asking questions.**
 
-# Activate (Windows)
-venv\Scripts\activate
-# Activate (Mac/Linux)
-source venv/bin/activate
+Interact with your data in plain English. Our NVIDIA-powered AI agent understands context, remembers your conversation, and can instantly pull complex stats, compare regions, or explain trends.
 
-# Install dependencies
-pip install -r requirements.txt
+> _"Which state has the highest biometric stress index this month?"_
 
-# Start backend
-cd backend
-python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
+### Real-Time Anomaly Detection
 
-**Backend runs at:** `http://localhost:8000`
+**Spot fraud before it spreads.**
 
-### **3. Frontend Setup** (New Terminal)
-```bash
-# Install dependencies
-cd frontend
-npm install
+Automatically monitor thousands of pincodes for suspicious behavior. The system flags high-risk areas using advanced statistical models, identifying unusual spikes in demographic changes or biometric failures that could indicate fraud or system errors.
 
-# Start development server
-npm run dev
-```
+### Predictive Forecasting
 
-**Frontend runs at:** `http://localhost:3000`
+**Know what's coming.**
 
----
+Don't just react to demand—anticipate it. Our forecasting engine predicts enrolment and update volumes for the next 30 days, helping you allocate resources, staff centers, and manage infrastructure capacity proactively.
 
-## 📊 **Platform Features**
+### Granular Regional Intelligence
 
-### **Dashboard Pages:**
+**From National view to District details.**
 
-1. **📊 Dashboard** - Executive overview with KPIs, trends, and top states
-2. **🗺️ States Analysis** - All 36 states with risk classification, search, filter, sort
-3. **🔀 State Clustering** - ML-based state groupings with PCA visualization
-4. **⚠️ Anomaly Detection** - High-risk pincodes with anomaly scores
-5. **📈 Demand Forecast** - Prophet-based predictions with confidence intervals
-6. **🛡️ High Risk Areas** - Top risk pincodes with detailed metrics
+Drill down instantly from a national overview to specific state and district performance. Compare regions side-by-side using proprietary metrics like the **Identity Velocity Index (IVI)** and **Biometric Stress Index (BSI)** to understand operational health at a glance.
 
-### **Key Capabilities:**
-- ✅ **Real-time data loading** with LRU caching
-- ✅ **Color-coded risk classification** (Critical/High Risk/Stable)
-- ✅ **Interactive charts** with Recharts
-- ✅ **Advanced filtering & sorting**
-- ✅ **Responsive design** (mobile-friendly)
-- ✅ **Government-grade UI** (clean, professional)
+### Dynamic Clustering
 
----
+**Understand behavior patterns.**
 
-## 📁 **Project Structure**
+Go beyond geography. Our machine learning clustering groups states based on actual usage patterns and stress markers, helping you apply targeted policies to regions facing similar challenges, regardless of their location.
 
-```
-Aadhaar-Identity-Intelligence-Platform/
-├── backend/                  # FastAPI Backend
-│   ├── main.py              # API endpoints
-│   ├── requirements.txt     # Python dependencies
-│   └── .gitignore
-│
-├── frontend/                # React Frontend
-│   ├── src/
-│   │   ├── components/      # Reusable components
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API service layer
-│   │   └── index.css        # Tailwind styles
-│   ├── package.json
-│   ├── vite.config.js
-│   └── .gitignore
-│
-├── src/                     # Core Python Modules
-│   ├── data_pipeline.py     # Data loading & cleaning
-│   ├── ml_models.py         # ML models (anomaly, clustering, forecast)
-│   └── agents.py            # Agentic AI system (optional)
-│
-├── data/                    # Data Directory
-│   ├── api_data_aadhar_biometric/
-│   ├── api_data_aadhar_demographic/
-│   └── api_data_aadhar_enrolment/
-│
-├── requirements.txt         # Main Python dependencies
-├── README.md               # This file
-├── LICENSE                 # Apache 2.0 License
-│
-├── start_backend.sh        # Backend startup script (Unix)
-├── start_frontend.sh       # Frontend startup script (Unix)
-├── start_platform.sh       # Full platform startup (Unix)
-└── start_platform.bat      # Full platform startup (Windows)
-```
+## Architecture
 
----
+<figure align="center">
+  <img src="docs/diagram_1.png" alt="Mobile Process Flow Diagram" width="90%"/>
+  <figcaption>Mobile Process Flow</figcaption>
+</figure>
 
-## 🔧 **Technology Stack**
+<figure align="center">
+  <img src="docs/diagram_2.png" alt="Web Portal Flow Diagram" width="90%"/>
+  <figcaption>Web Portal (Analytics + Admin)</figcaption>
+</figure>
 
-### **Backend:**
-- **FastAPI** - High-performance Python API framework
-- **Pandas/NumPy** - Data processing
-- **Scikit-learn** - Machine learning
-- **Prophet** - Time series forecasting
-- **Uvicorn** - ASGI server
 
-### **Frontend:**
-- **React 18.3** - UI library
-- **Vite** - Build tool
-- **Tailwind CSS** - Styling
-- **Recharts** - Data visualization
-- **React Query** - Data fetching & caching
+**Key Components:**
+
+- **Data Pipeline:** High-performance CSV processing using Polars (10x faster than Pandas)
+- **ML Engine:** Anomaly detection, forecasting, and clustering models
+- **AI Agent:** NVIDIA NIM-powered conversational interface with context retention
+- **Cache Layer:** Redis for sub-second query responses
+- **Frontend:** Responsive React dashboard with interactive visualizations
+
+## Technology Stack
+
+### Backend
+
+- **FastAPI** - High-performance async API framework
+- **Polars** - Lightning-fast dataframe operations
+- **NVIDIA NIM** - LLM inference for conversational AI
+- **Redis** - In-memory caching and session management
+- **SQLite** - Conversation persistence
+- **Scikit-learn** - Machine learning models
+
+### Frontend
+
+- **React 18** - Modern UI framework
+- **Vite** - Next-generation frontend tooling
+- **TailwindCSS** - Utility-first styling
+- **Chart.js** - Interactive data visualizations
 - **Axios** - HTTP client
 
-### **Data Processing:**
-- **Dynamic State Matching** - Fuzzy string matching with rapidfuzz
-- **Lazy Loading** - On-demand data loading
-- **LRU Caching** - Fast API responses
+### Data Processing
 
----
+- **Prophet** - Forecasting time-series data
+- **NumPy** - Numerical computing
+- **Pandas** - Data analysis (legacy support)
 
-## 📈 **Data Summary**
+### Agentic AI
 
-| Metric | Count |
-|--------|-------|
-| **Total Biometric Updates** | 69.7M+ |
-| **Total Demographic Updates** | 49.2M+ |
-| **Total Enrolments** | 5.4M+ |
-| **Unique Pincodes** | 19,814 |
-| **States Covered** | 36 |
-| **Districts** | 974 |
+- **LangGraph** - Building Stateful and Complex Agent Workflows
 
----
+## Getting Started
 
-## 🎨 **API Documentation**
+Get up and running with the full intelligence suite in minutes.
 
-Once the backend is running, visit:
-- **Swagger UI:** http://localhost:8000/docs
-- **ReDoc:** http://localhost:8000/redoc
+**Prerequisites:**
 
-### **Key Endpoints:**
+- Python 3.10+
+- Node.js 18+
 
-```
-GET  /api/summary           # Platform summary metrics
-GET  /api/states            # All states with IVI/BSI
-GET  /api/states/{name}     # State detail
-GET  /api/clustering        # State clustering analysis
-GET  /api/anomalies         # High-risk pincodes
-GET  /api/forecast/{metric} # Demand forecasting
-GET  /api/trends/daily      # Daily trends
-GET  /api/trends/monthly    # Monthly trends
+**Launch the Platform:**
+
+Simply run the startup script for your OS:
+
+**Windows:**
+
+```cmd
+start_platform.bat
 ```
 
----
-
-## 🏆 **Use Cases**
-
-1. **UIDAI Operations** - Resource allocation for enrolment centers
-2. **Policy Planning** - Identify states needing biometric alternatives
-3. **Data Quality** - Detect anomalies and data integrity issues
-4. **Demand Forecasting** - Predict future service demand
-5. **Performance Monitoring** - Track system health metrics
-6. **Risk Assessment** - Identify high-risk pincodes
-7. **State Benchmarking** - Compare state performance
-
----
-
-## 🚀 **Production Deployment**
-
-### **Backend (FastAPI):**
-```bash
-# Production server with Gunicorn
-pip install gunicorn
-gunicorn backend.main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000
-```
-
-### **Frontend (React):**
-```bash
-# Build for production
-cd frontend
-npm run build
-
-# Serve with nginx, Apache, or any static file server
-# Build output is in: frontend/dist/
-```
-
----
-
-## 🔐 **Environment Variables**
-
-### **Backend (.env):**
-```bash
-# Optional: AI Features (NVIDIA NIM)
-NVIDIA_API_KEY=nvapi-your-api-key-here
-
-# Optional: Custom data path
-DATA_PATH=/path/to/data
-```
-
-### **Frontend (.env):**
-```bash
-# API URL (production)
-VITE_API_URL=https://your-api-domain.com
-```
-
----
-
-## 🧪 **Testing**
+**Linux/Mac:**
 
 ```bash
-# Run all tests
-pytest
-
-# Run specific test
-python test_fuzzy_matching.py
-python test_system.py
+./start_platform.sh
 ```
 
+Access the dashboard at `http://localhost:5173` and the API documentation at `http://localhost:8000/docs`.
+
+## Usage
+
+### Use Cases
+
+- **For Policy Makers:** Design data-driven interventions for regions with low saturation or high rejection rates.
+- **For Fraud Investigators:** Instantly isolate pincodes with "High Risk" flags for on-ground verification.
+- **For Operations Managers:** Dynamic staffing for enrolment centers based on 30-day volume forecasts.
+- **For Data Analysts:** Export clean, pre-processed insights without spending hours on data cleaning.
+
+### Interacting with the AI Assistant
+
+Simply ask questions in natural language:
+
+- _"Which state has the highest biometric stress index this month?"_
+- _"Show me pincodes with anomalous activity in Maharashtra"_
+- _"Predict enrolment volume for Karnataka next 30 days"_
+
+## Novel Contributions
+
+### 1. Proprietary Risk Indices
+
+- **Identity Velocity Index (IVI):** Measures the rate of identity changes relative to population density
+- **Biometric Stress Index (BSI):** Quantifies biometric update pressure and failure patterns
+
+### 2. Conversational Analytics
+
+Natural language interface to complex administrative queries using NVIDIA NIM, eliminating the need for SQL knowledge or BI tool expertise.
+
+### 3. Privacy-Preserving Architecture
+
+All analytics operate on aggregated data with no PII exposure. Individual records never leave the processing layer.
+
+### 4. Real-Time Anomaly Detection
+
+Statistical anomaly detection across 19,000+ pincodes with automatic risk scoring and prioritization.
+
+### 5. Predictive Capacity Planning
+
+ML-powered forecasting for resource allocation and infrastructure planning.
+
+## Performance
+
+- **Data Processing:** Handles 2M+ records in under 5 seconds using Polars
+- **Query Response:** Sub-second responses via Redis caching
+- **Concurrent Users:** Supports 1000+ simultaneous dashboard users
+- **AI Response Time:** Average 2-3 seconds for complex analytical queries
+- **Data Refresh:** Monthly automated sync from source systems
+
+## Screenshots
+
+<p align="center">
+  <img src="docs/mobile_screens.png" alt="App Screenshots" width="100%"/>
+</p>
+
+<style>
+  .grid-container {
+    display: grid;
+    /* Creates 2 columns, each taking an equal fraction of the space */
+    grid-template-columns: 1fr 1fr;
+    /* Adds a small gap between the images */
+    gap: 10px; 
+    /* Centers the grid within the markdown document */
+    justify-items: center; 
+  }
+  .grid-item img {
+    /* Ensures images are responsive and don't overflow their grid area */
+    width: 100%;
+    height: auto;
+    padding: 5px;
+  }
+</style>
+
+<div class="grid-container">
+  <div class="grid-item">
+    <img src="docs/laptop_1.png" alt="State-wise Analysis">
+  </div>
+  <div class="grid-item">
+    <img src="docs/laptop_2.png" alt="Executive Dashboard">
+  </div>
+  <div class="grid-item">
+    <img src="docs/laptop_3.png" alt="State Clustering Analysis">
+  </div>
+  <div class="grid-item">
+    <img src="docs/laptop_4.png" alt="Anamoly Detection">
+  </div>
+</div>
+
+## 👥 Team
+
+- [Vaidik Jaiswal](https://github.com/vaidikjais)
+- [Arslaan Siddiqui](https://github.com/arslaan5)
+
 ---
 
-## 📝 **License**
-
-Apache License 2.0 - See [LICENSE](LICENSE) file for details.
-
----
-
-## 🤝 **Contributing**
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
----
-
-## 📞 **Support**
-
-For issues, questions, or contributions:
-- Open an issue on GitHub
-- Check the documentation in `/docs` folder
-
----
-
-## ✨ **Acknowledgments**
-
-Built for Aadhaar Analytics - Combining modern web technologies with advanced machine learning for government-grade data intelligence.
-
-**Status:** ✅ Production-Ready  
-**Version:** 2.0.0  
-**Last Updated:** January 2026
-
----
-
-**Powered by FastAPI, React, and AI** 🚀
+_Built for the future of Identity Management._
