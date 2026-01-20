@@ -171,6 +171,5 @@ backend/.pytest_cache/
 # Uncomment the line below if you want to ignore cursor terminal logs
 # .cursor/
 
-# Documentation folder (development notes)
-docs/
+# Development Notes
 tests/
