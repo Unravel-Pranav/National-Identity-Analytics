@@ -89,7 +89,7 @@ Unlike traditional BI tools, NIA enables **natural language querying** of comple
 
 ## Features
 
-### 🤖 AI Analyst Assistant
+### AI Analyst Assistant
 
 Stop writing queries. **Start asking questions.**
 
@@ -99,7 +99,7 @@ Ask questions in plain English and get instant insights:
 
 ---
 
-### 🚨 Real-Time Anomaly Detection
+### Real-Time Anomaly Detection
 
 Spot fraud before it spreads.
 
@@ -109,7 +109,7 @@ Spot fraud before it spreads.
 
 ---
 
-### 📈 Predictive Forecasting
+### Predictive Forecasting
 
 Know what’s coming.
 
@@ -119,7 +119,7 @@ Know what’s coming.
 
 ---
 
-### 🌍 Granular Regional Intelligence
+### Granular Regional Intelligence
 
 Drill down seamlessly:
 
@@ -129,7 +129,7 @@ Compare regions using IVI and BSI for instant operational insight.
 
 ---
 
-### 🧠 Dynamic Clustering
+### Dynamic Clustering
 
 Group states by behavior, not geography.
 
