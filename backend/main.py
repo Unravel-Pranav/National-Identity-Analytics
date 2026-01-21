@@ -13,8 +13,25 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+# Fix for Render: Ensure the backend directory is in the path
+backend_dir = str(Path(__file__).parent)
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
+# Add src to path
+src_dir = str(Path(__file__).parent.parent / "src")
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
 # Production-grade conversation storage using SQLite
 from conversation_db import get_conversation_db
+from data_pipeline import AadhaarDataPipeline
+from ml_models import (
+    AnomalyDetector,
+    DemandForecaster,
+    IdentityLifecyclePredictor,
+    StateClustering,
+)
 from fastapi import FastAPI, HTTPException, Query
 from fastapi import Path as PathParam
 from fastapi.middleware.cors import CORSMiddleware
@@ -34,17 +51,6 @@ except ImportError:
     print(
         "[WARNING] python-dotenv not installed, environment variables must be set manually"
     )
-
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-from data_pipeline import AadhaarDataPipeline
-from ml_models import (
-    AnomalyDetector,
-    DemandForecaster,
-    IdentityLifecyclePredictor,
-    StateClustering,
-)
 
 # Initialize FastAPI
 app = FastAPI(
