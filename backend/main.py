@@ -113,6 +113,16 @@ async def get_available_dates():
     """Get list of available Year-Month combinations for filtering."""
     try:
         data_path = (Path(__file__).parent.parent / "data").resolve()
+        
+        # Check if data directory exists
+        if not data_path.exists():
+            print(f"[WARNING] Data directory not found: {data_path}")
+            return {
+                "dates": [],
+                "latest": None,
+                "error": "Data directory not found on server"
+            }
+        
         pipeline = AadhaarDataPipeline(str(data_path))
         dates = pipeline.get_available_months()
         # Convert to list of dicts for JSON
@@ -121,7 +131,12 @@ async def get_available_dates():
             "latest": {"year": dates[0][0], "month": dates[0][1]} if dates else None,
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"[ERROR] Error getting available dates: {str(e)}")
+        return {
+            "dates": [],
+            "latest": None,
+            "error": str(e)
+        }
 
 
 # ============================================================================
@@ -144,15 +159,19 @@ async def root():
 async def health():
     """Detailed health check."""
     try:
-        pipeline = get_pipeline_for_request()
+        data_path = (Path(__file__).parent.parent / "data").resolve()
+        data_exists = data_path.exists()
+        
         return {
             "status": "healthy",
-            "data_loaded": pipeline._bio_df is not None,
+            "data_directory_exists": data_exists,
+            "data_path": str(data_path),
             "timestamp": time.time(),
         }
     except Exception as e:
         return JSONResponse(
-            status_code=503, content={"status": "unhealthy", "error": str(e)}
+            status_code=200,  # Still return 200 so Render knows the app is running
+            content={"status": "degraded", "error": str(e), "timestamp": time.time()}
         )
 
 
