@@ -480,21 +480,24 @@ class AadhaarDataPipeline:
     def _add_derived_columns(self) -> None:
         """Add derived columns to all dataframes."""
         # Biometric totals
-        self._bio_df["total_bio_updates"] = (
-            self._bio_df["bio_age_5_17"] + self._bio_df["bio_age_17_"]
-        )
+        if not self._bio_df.empty and "bio_age_5_17" in self._bio_df.columns:
+            self._bio_df["total_bio_updates"] = (
+                self._bio_df["bio_age_5_17"] + self._bio_df["bio_age_17_"]
+            )
 
         # Demographic totals
-        self._demo_df["total_demo_updates"] = (
-            self._demo_df["demo_age_5_17"] + self._demo_df["demo_age_17_"]
-        )
+        if not self._demo_df.empty and "demo_age_5_17" in self._demo_df.columns:
+            self._demo_df["total_demo_updates"] = (
+                self._demo_df["demo_age_5_17"] + self._demo_df["demo_age_17_"]
+            )
 
         # Enrolment totals
-        self._enrol_df["total_enrolments"] = (
-            self._enrol_df["age_0_5"]
-            + self._enrol_df["age_5_17"]
-            + self._enrol_df["age_18_greater"]
-        )
+        if not self._enrol_df.empty and "age_0_5" in self._enrol_df.columns:
+            self._enrol_df["total_enrolments"] = (
+                self._enrol_df["age_0_5"]
+                + self._enrol_df["age_5_17"]
+                + self._enrol_df["age_18_greater"]
+            )
 
     def get_pincode_analytics(
         self, year: int | None = None, month: int | None = None

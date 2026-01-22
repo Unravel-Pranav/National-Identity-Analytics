@@ -25,8 +25,8 @@ if src_dir not in sys.path:
 
 # Production-grade conversation storage using SQLite
 from conversation_db import get_conversation_db
-from data_pipeline import AadhaarDataPipeline
-from ml_models import (
+from src.data_pipeline import AadhaarDataPipeline
+from src.ml_models import (
     AnomalyDetector,
     DemandForecaster,
     IdentityLifecyclePredictor,
@@ -72,27 +72,18 @@ app.add_middleware(
 MAX_HISTORY = 20  # Keep last 20 messages per session
 
 
-@lru_cache(maxsize=4)
 def get_pipeline_for_request(year: int | None = None, month: int | None = None):
-    """Get pipeline instance for specific timeframe with caching."""
-    # Use parent directory's data folder - resolve to absolute path
-    data_path = (Path(__file__).parent.parent / "data").resolve()
+    """Get pipeline instance for specific timeframe - no caching to avoid stale data."""
+    # Use backend's data folder - resolve to absolute path
+    data_path = (Path(__file__).parent / "data").resolve()
 
-    # Create new instance to avoid state pollution in singleton
+    # Create new instance to avoid state pollution
     pipeline = AadhaarDataPipeline(str(data_path))
 
-    # If no date provided, find latest available to avoid loading everything by default
-    if year is None and month is None:
-        available = pipeline.get_available_months()
-        if available:
-            # Default to latest
-            latest_year, latest_month = available[0]
-            print(f"[INFO] Defaulting to latest data: {latest_year}-{latest_month:02d}")
-            pipeline.load_all_data(latest_year, latest_month)
-            return pipeline
-
+    # Load data
     print(f"[INFO] Loading data for Year={year}, Month={month}")
-    pipeline.load_all_data(year, month)
+    bio, demo, enrol = pipeline.load_all_data(year, month)
+    print(f"[INFO] Loaded: Bio={len(bio):,}, Demo={len(demo):,}, Enrol={len(enrol):,}")
     return pipeline
 
 
@@ -112,7 +103,7 @@ def get_analytics_cached(year: int | None = None, month: int | None = None):
 async def get_available_dates():
     """Get list of available Year-Month combinations for filtering."""
     try:
-        data_path = (Path(__file__).parent.parent / "data").resolve()
+        data_path = (Path(__file__).parent / "data").resolve()
         
         # Check if data directory exists
         if not data_path.exists():
@@ -879,4 +870,4 @@ async def clear_cache():
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

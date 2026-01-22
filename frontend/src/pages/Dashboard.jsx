@@ -36,6 +36,7 @@ export default function Dashboard() {
   const { data: dateData } = useQuery({
     queryKey: ['availableDates'],
     queryFn: apiService.getAvailableDates,
+    enabled: true, // Enable the query
   });
 
   // Set default to latest available when loaded
@@ -64,21 +65,21 @@ export default function Dashboard() {
   } = useQuery({
     queryKey: ['summary', queryParams],
     queryFn: () => apiService.getSummary(queryParams),
-    enabled: !!dateData,
+    enabled: true, // Always fetch data
     placeholderData: keepPreviousData
   });
 
   const { data: dailyTrends, isLoading: loadingTrends } = useQuery({
     queryKey: ['dailyTrends', queryParams],
     queryFn: () => apiService.getDailyTrends(30, queryParams),
-    enabled: !!dateData,
+    enabled: true, // Always fetch data
     placeholderData: keepPreviousData
   });
 
   const { data: states, isLoading: loadingStates } = useQuery({
     queryKey: ['states', queryParams],
     queryFn: () => apiService.getAllStates(queryParams),
-    enabled: !!dateData,
+    enabled: true, // Always fetch data
     placeholderData: keepPreviousData
   });
 
