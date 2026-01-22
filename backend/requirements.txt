@@ -1,0 +1,43 @@
+# Core Backend Dependencies for Production
+fastapi==0.128.0
+uvicorn[standard]==0.40.0
+gunicorn==23.0.0
+python-dotenv==1.2.1
+python-multipart==0.0.21
+pydantic==2.12.5
+pydantic-settings==2.12.0
+
+# Data Processing
+pandas==2.3.3
+numpy==2.4.1
+scipy==1.17.0
+
+# Machine Learning
+scikit-learn==1.8.0
+prophet==1.2.1
+
+# Database & Caching
+redis==7.1.0
+SQLAlchemy==2.0.45
+
+# Fuzzy Matching
+RapidFuzz==3.14.3
+
+# AI/LangChain
+langchain==1.2.3
+langchain-core==1.2.7
+langchain-nvidia-ai-endpoints==1.0.1
+langgraph==1.0.6
+langgraph-checkpoint==4.0.0
+langgraph-prebuilt==1.0.6
+
+# HTTP & Networking
+httpx==0.28.1
+requests==2.32.5
+aiohttp==3.13.3
+
+# Utilities
+python-dateutil==2.9.0.post0
+pytz==2025.2
+tenacity==9.1.2
+tqdm==4.67.1

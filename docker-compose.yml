@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # Redis Cache Service
+  redis:
+    image: redis:7-alpine
+    container_name: aadhaar-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aadhaar-network
+
+  # Backend API Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aadhaar-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount data directory (contains CSV files)
+      - ./backend/data:/app/data:ro
+      # Mount for persistent database
+      - ./backend/conversations.db:/app/conversations.db
+      # Mount logs directory
+      - ./backend/logs:/app/logs
+    environment:
+      # Redis Configuration
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      
+      # NVIDIA API Key (set this in .env file)
+      - NVIDIA_API_KEY=${NVIDIA_API_KEY}
+      
+      # Application Settings
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+      - WORKERS=4
+      
+      # CORS Settings (adjust for your frontend domain)
+      - CORS_ORIGINS=*
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - aadhaar-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  aadhaar-network:
+    driver: bridge
